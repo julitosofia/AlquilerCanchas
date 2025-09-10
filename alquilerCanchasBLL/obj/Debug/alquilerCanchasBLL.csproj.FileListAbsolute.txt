@@ -1,0 +1,11 @@
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\alquilerCanchasBLL.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\alquilerCanchasBLL.pdb
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\alquilerCanchasBE.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\alquilerCanchasDAL.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\alquilerCanchasBE.pdb
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\alquilerCanchasDAL.pdb
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchasBLL.csproj.AssemblyReference.cache
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchasBLL.csproj.CoreCompileInputs.cache
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquiler.209CC4F4.Up2Date
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchasBLL.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchasBLL.pdb

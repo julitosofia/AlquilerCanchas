@@ -1,0 +1,6 @@
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBE\bin\Debug\alquilerCanchasBE.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBE\bin\Debug\alquilerCanchasBE.pdb
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBE\obj\Debug\alquilerCanchasBE.csproj.AssemblyReference.cache
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBE\obj\Debug\alquilerCanchasBE.csproj.CoreCompileInputs.cache
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBE\obj\Debug\alquilerCanchasBE.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBE\obj\Debug\alquilerCanchasBE.pdb

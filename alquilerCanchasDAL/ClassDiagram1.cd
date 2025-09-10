@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="alquilerCanchasDAL.UsuarioDAL" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAgAACAAAAAIAIAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>UsuarioDAL.cs</FileName>
+      <NewMemberFileName>UsuarioDal.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.ProductoDAL" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQAAAgAAAAACAAAAIAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>ProductoDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.ReservaDAL" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQgAAAAgAAAAAAAAIAggAAIAAAAAAAAAAA=</HashCode>
+      <FileName>ReservaDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.CanchaDAL" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAIAAAAAAQAAAA=</HashCode>
+      <FileName>CanchaDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.VentaDAL" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQACAAAAAAAAAAAAAAgAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>VentaDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.Conexion" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Conexion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.CompraDAL" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgQAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompraDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
