@@ -5,177 +5,114 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using alquilerCanchasBE;
+using System.Data;
 
 namespace alquilerCanchasDAL
 {
-    public class CompraDAL
+    public class CompraDAL : ICompraRepository
     {
-        private string connectionString = Conexion.Cadena;
+        private readonly SqlConnection conexion;
+        private readonly SqlTransaction transaccion;
+
+        public CompraDAL(SqlConnection conexion, SqlTransaction transaccion)
+        {
+            this.conexion = conexion;
+            this.transaccion = transaccion;
+        }
+        public CompraDAL()
+        {
+            var connDal = new ConexionDAL();
+            this.conexion = new SqlConnection(connDal.CadenaConexion);
+            this.conexion.Open();
+        }
+
+        public SqlDataReader ObtenerTodasLasCompras()
+        {
+            using (var cmd = new SqlCommand("SP_ObtenerTodasLasCompras", conexion, transaccion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                return cmd.ExecuteReader();
+            }
+
+
+        }
+        public SqlDataReader ObtenerDetallesPorCompra(int idCompra)
+        {
+            using (var cmd = new SqlCommand("SP_ObtenerDetallesPorCompra", conexion, transaccion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdCompra", idCompra);
+                return cmd.ExecuteReader();
+            }
+        }
+        public SqlDataReader ListarCompra()
+        {
+            using (var cmd = new SqlCommand("SP_ListarCompra", conexion, transaccion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                return cmd.ExecuteReader();
+            }
+
+        }
+
 
         public bool RegistrarCompra(Compra compra)
         {
-            using (SqlConnection cn = new SqlConnection(connectionString))
+            int idCompra;
+
+            // Registrar Compra (Encabezado)
+            using (var cmdCompra = new SqlCommand("RegistrarCompra", conexion, transaccion))
             {
-                cn.Open();
-                SqlTransaction tx = cn.BeginTransaction();
-                try
+                cmdCompra.CommandType = CommandType.StoredProcedure;
+                cmdCompra.Parameters.AddWithValue("@Cliente", compra.Cliente);
+                cmdCompra.Parameters.AddWithValue("@Fecha", compra.Fecha);
+
+
+                // Si esto falla, lanza una excepción (la UoW la capturará).
+                idCompra = Convert.ToInt32(cmdCompra.ExecuteScalar());
+            }
+
+            // Iterar y registrar detalles / actualizar stock
+            foreach (var detalle in compra.Detalles)
+            {
+                // Registrar Detalle
+                using (var cmdDetalle = new SqlCommand("RegistrarDetalleCompra", conexion, transaccion))
                 {
-                    string queryCompra = @"INSERT INTO Compras (Cliente, Fecha) 
-                                       VALUES (@Cliente, @Fecha); 
-                                       SELECT SCOPE_IDENTITY();";
+                    cmdDetalle.CommandType = CommandType.StoredProcedure;
 
-                    int idCompra;
-                    using (SqlCommand cmdCompra = new SqlCommand(queryCompra, cn, tx))
-                    {
-                        cmdCompra.Parameters.AddWithValue("@Cliente", compra.Cliente);
-                        cmdCompra.Parameters.AddWithValue("@Fecha", compra.Fecha);
-                        idCompra = Convert.ToInt32(cmdCompra.ExecuteScalar());
-                    }
+                    // ✅ AGREGAR: El parámetro @IdCompra es crucial aquí. ✅
+                    cmdDetalle.Parameters.AddWithValue("@IdCompra", idCompra);
 
-                    foreach (var detalle in compra.Detalles)
-                    {
-                        string queryDetalle = @"INSERT INTO DetalleCompra 
-                        (IdCompra, IdProducto, NombreProducto, Cantidad, PrecioUnitario, Categoria) 
-                        VALUES (@IdCompra, @IdProducto, @NombreProducto, @Cantidad, @PrecioUnitario, @Categoria)";
+                    // Agregar el resto de los parámetros que SÍ definiste en tu SP:
+                    cmdDetalle.Parameters.AddWithValue("@NombreProducto", detalle.NombreProducto);
+                    cmdDetalle.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
+                    cmdDetalle.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                    cmdDetalle.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
+                    cmdDetalle.Parameters.AddWithValue("@Categoria", detalle.Categoria);
 
-                        using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, cn, tx))
-                        {
-                            cmdDetalle.Parameters.AddWithValue("@IdCompra", idCompra);
-                            cmdDetalle.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
-                            cmdDetalle.Parameters.AddWithValue("@NombreProducto", detalle.NombreProducto);
-                            cmdDetalle.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                            cmdDetalle.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
-                            cmdDetalle.Parameters.AddWithValue("@Categoria", detalle.Categoria);
-                            cmdDetalle.ExecuteNonQuery();
-                        }
-
-                        string queryStock = @"UPDATE Producto 
-                                          SET Stock = Stock - @Cantidad 
-                                          WHERE IdProducto = @IdProducto AND Stock >= @Cantidad";
-
-                        using (SqlCommand cmdStock = new SqlCommand(queryStock, cn, tx))
-                        {
-                            cmdStock.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                            cmdStock.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
-                            cmdStock.ExecuteNonQuery();
-                        }
-                    }
-
-                    tx.Commit();
-                    return true;
+                    cmdDetalle.ExecuteNonQuery();
                 }
-                catch
+
+                // Actualizar Stock
+                using (var cmdStock = new SqlCommand("SP_ActualizarStock", conexion, transaccion))
                 {
-                    tx.Rollback();
-                    return false;
+                    cmdStock.CommandType = CommandType.StoredProcedure;
+                    cmdStock.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
+                    cmdStock.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+
+                    cmdStock.ExecuteNonQuery();
                 }
             }
-        }
 
-        public List<Compra> ListarCompras()
-        {
-            var lista = new List<Compra>();
-            using (SqlConnection cn = new SqlConnection(connectionString))
-            {
-                cn.Open();
-                string query = "SELECT IdCompra, Cliente, Fecha FROM Compras ORDER BY Fecha DESC";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        lista.Add(new Compra
-                        {
-                            IdCompra = (int)dr["IdCompra"],
-                            Cliente = dr["Cliente"].ToString(),
-                            Fecha = (DateTime)dr["Fecha"]
-                        });
-                    }
-                }
-            }
-            return lista;
-        }
+            // Si llegamos aquí, todo en la DB fue exitoso bajo la transacción.
+            return true;
 
-        public List<DetalleCompra> ObtenerDetallesPorCompra(int idCompra)
-        {
-            var lista = new List<DetalleCompra>();
-            using (SqlConnection cn = new SqlConnection(connectionString))
-            {
-                cn.Open();
-                string query = @"SELECT IdProducto, NombreProducto, Cantidad, PrecioUnitario, Categoria 
-                             FROM DetalleCompra WHERE IdCompra = @IdCompra";
-
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    cmd.Parameters.AddWithValue("@IdCompra", idCompra);
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            lista.Add(new DetalleCompra
-                            {
-                                IdProducto = (int)dr["IdProducto"],
-                                NombreProducto = dr["NombreProducto"].ToString(),
-                                Cantidad = (int)dr["Cantidad"],
-                                PrecioUnitario = (decimal)dr["PrecioUnitario"],
-                                Categoria = dr["Categoria"].ToString()
-                            });
-                        }
-                    }
-                }
-            }
-            return lista;
-        }
-
-        public List<Compra> ObtenerTodasLasCompras()
-        {
-            var lista = new List<Compra>();
-            using (SqlConnection cn = new SqlConnection(connectionString))
-            {
-                cn.Open();
-                string queryCompra = "SELECT IdCompra, Cliente, Fecha FROM Compras ORDER BY Fecha DESC";
-                using (SqlCommand cmdCompra = new SqlCommand(queryCompra, cn))
-                using (SqlDataReader drCompra = cmdCompra.ExecuteReader())
-                {
-                    while (drCompra.Read())
-                    {
-                        var compra = new Compra
-                        {
-                            IdCompra = (int)drCompra["IdCompra"],
-                            Cliente = drCompra["Cliente"].ToString(),
-                            Fecha = (DateTime)drCompra["Fecha"],
-                            Detalles = new List<DetalleCompra>()
-                        };
-                        lista.Add(compra);
-                    }
-                }
-
-                foreach (var compra in lista)
-                {
-                    string queryDetalle = @"SELECT IdProducto, NombreProducto, Cantidad, PrecioUnitario, Categoria 
-                                        FROM DetalleCompra WHERE IdCompra = @IdCompra";
-
-                    using (SqlCommand cmdDetalle = new SqlCommand(queryDetalle, cn))
-                    {
-                        cmdDetalle.Parameters.AddWithValue("@IdCompra", compra.IdCompra);
-                        using (SqlDataReader drDetalle = cmdDetalle.ExecuteReader())
-                        {
-                            while (drDetalle.Read())
-                            {
-                                compra.Detalles.Add(new DetalleCompra
-                                {
-                                    IdProducto = (int)drDetalle["IdProducto"],
-                                    NombreProducto = drDetalle["NombreProducto"].ToString(),
-                                    Cantidad = (int)drDetalle["Cantidad"],
-                                    PrecioUnitario = (decimal)drDetalle["PrecioUnitario"],
-                                    Categoria = drDetalle["Categoria"].ToString()
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-            return lista;
+            // ELIMINAR ESTO:
+            // catch
+            // {
+            //     transaccion?.Rollback(); 
+            //     return false;
+            // }
         }
     }
 }

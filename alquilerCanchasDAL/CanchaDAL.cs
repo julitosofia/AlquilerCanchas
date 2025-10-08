@@ -4,78 +4,83 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace alquilerCanchasDAL
 {
-    public class CanchaDAL
+    public class CanchaDAL : IRepository<Cancha>
     {
-        public List<Cancha> Listar()
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+        public List<Cancha>Listar()
         {
             var lista = new List<Cancha>();
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
+            using(SqlConnection cn = new SqlConnection(conexion.CadenaConexion))
             {
                 cn.Open();
-                string query = "SELECT * FROM Cancha";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                using(SqlCommand cmd = new SqlCommand("SP_ListarCancha",cn))
                 {
-                    while (dr.Read())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using(SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        lista.Add(new Cancha
+                        while(dr.Read())
                         {
-                            IdCancha = (int)dr["IdCancha"],
-                            Nombre = dr["Nombre"].ToString(),
-                            Tipo = dr["Tipo"].ToString(),
-                            PrecioHora = (decimal)dr["PrecioHora"]
-                        });
+                            lista.Add(new Cancha
+                            {
+                                IdCancha = (int)dr["IdCancha"],
+                                Nombre = dr["Nombre"].ToString(),
+                                Tipo = dr["Tipo"].ToString(),
+                                PrecioHora = (decimal)dr["PrecioHora"]
+                            });
+                        }
                     }
                 }
+                return lista;
             }
-            return lista;
-
-
         }
-
+        public Cancha ObtenerPorId(int id)
+        {
+            var parametros = new List<SqlParameter> { new SqlParameter("@IdCancha", id) };
+            using(var reader= conexion.EjecutarReader("SP_ObtenerCanchaPorId",parametros))
+            {
+                if(reader.Read())
+                {
+                    return new Cancha
+                    {
+                        IdCancha = (int)reader["IdCancha"],
+                        Nombre = reader["Nombre"].ToString(),
+                        Tipo = reader["Tipo"].ToString(),
+                        PrecioHora = (decimal)reader["PrecioHora"]
+                    };
+                }
+            }
+            return null;
+        }
         public bool Insertar(Cancha cancha)
         {
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
+            var parametros = new List<SqlParameter>
             {
-                cn.Open();
-                string query = "INSERT INTO Cancha (Nombre,Tipo,PrecioHora) VALUE(@Nombre,@Tipo,@PrecioHora)";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@Nombre", cancha.Nombre);
-                cmd.Parameters.AddWithValue("@Tipo", cancha.Tipo);
-                cmd.Parameters.AddWithValue("@PrecioHora", cancha.PrecioHora);
-                return cmd.ExecuteNonQuery() > 0;
-            }
+                new SqlParameter("@Nombre",cancha.Nombre),
+                new SqlParameter("@Tipo",cancha.Tipo),
+                new SqlParameter("@PrecioHora",cancha.PrecioHora)
+            };
+            return conexion.EjecutarNonQuery("SP_InsertarCancha", parametros) > 0;
         }
-
         public bool Actualizar(Cancha cancha)
         {
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
+            var parametros = new List<SqlParameter>
             {
-                cn.Open();
-                string query = "UPDATE Cancha SET Nombre = @Nombre, Tipo= @Tipo,PrecioHora=@PrecioHora WHERE IdCancha = @IdCancha";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@Nombre", cancha.Nombre);
-                cmd.Parameters.AddWithValue("@Tipo", cancha.Tipo);
-                cmd.Parameters.AddWithValue("@PrecioHora", cancha.PrecioHora);
-                cmd.Parameters.AddWithValue("@IdCancha", cancha.IdCancha);
-                return cmd.ExecuteNonQuery() > 0;
-
-            }
+                new SqlParameter("@IdCancha",cancha.IdCancha),
+                new SqlParameter("@Nombre",cancha.Nombre),
+                new SqlParameter("@Tipo",cancha.Tipo),
+                new SqlParameter("@PrecioHora",cancha.PrecioHora)
+            };
+            return conexion.EjecutarNonQuery("SP_ActualizarCancha", parametros) > 0;
         }
-        public bool Elminar(int idCancha)
+        public bool Eliminar(int id)
         {
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
-            {
-                cn.Open();
-                string query = "DELETE FROM Cancha WHERE IdCancha = @IdCancha";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.AddWithValue("@IdCancha", idCancha);
-                return cmd.ExecuteNonQuery() > 0;
-            }
+            var parametros = new List<SqlParameter> { new SqlParameter("@IdCancha", id) };
+            return conexion.EjecutarNonQuery("SP_EliminarCancha", parametros) > 0;
         }
-
     }
 }

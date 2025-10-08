@@ -44,7 +44,7 @@ namespace alquilerCanchasFutbol
                 Stock = (int)nudCantidad.Value,
                 Categoria = txtCategoria.Text.Trim(),
             };
-            ProductoBLL productoBLL = new ProductoBLL();
+            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
             bool ok = productoBLL.AgregarProducto(producto);
             MessageBox.Show(ok ? "Producto agregado correctamente." : "Error al agregar producto.");
             if (ok) CargarInventario();
@@ -56,7 +56,7 @@ namespace alquilerCanchasFutbol
             if (dgvInventario.CurrentRow == null) return;
             Producto producto = (Producto)dgvInventario.CurrentRow.DataBoundItem;
 
-            ProductoBLL productoBLL = new ProductoBLL();
+            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
             bool ok = productoBLL.EliminarProducto(producto.IdProducto);
             MessageBox.Show(ok ? "Producto eliminado correctamente." : "Error al elminar producto.");
             if (ok) CargarInventario();
@@ -64,7 +64,7 @@ namespace alquilerCanchasFutbol
 
         private void CargarInventario()
         {
-            ProductoBLL productoBLL = new ProductoBLL();
+            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
             dgvInventario.DataSource = null;
             dgvInventario.DataSource = productoBLL.ObtenerTodos();
         }
@@ -79,7 +79,7 @@ namespace alquilerCanchasFutbol
             producto.Stock = (int)nudCantidad.Value;
             producto.Categoria = txtCategoria.Text.Trim();
 
-            ProductoBLL productoBLL = new ProductoBLL();
+            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
             bool ok = productoBLL.ModificarProducto(producto);
             MessageBox.Show(ok ? "Producto modificado correctamente." : "Error al modificar el producto.");
             if(ok) CargarInventario();

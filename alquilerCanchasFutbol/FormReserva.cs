@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using alquilerCanchasBE;
+using alquilerCanchasDAL;
 
 namespace alquilerCanchasFutbol
 {
@@ -28,7 +29,7 @@ namespace alquilerCanchasFutbol
             DateTime inicio = dtpHoraInicio.Value;
             DateTime fin = dtpHoraFin.Value;
 
-            ReservaBLL reservaBLL = new ReservaBLL();
+            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
             bool disponible = reservaBLL.TurnoDisponible(idCancha, fecha, inicio, fin);
 
             lblEstado.Text=disponible ? "Disponible" : "Ocupado";
@@ -58,7 +59,7 @@ namespace alquilerCanchasFutbol
                 HoraFin = dtpHoraFin.Value,
                 Total = decimal.Parse(lblTotal.Text.Replace("Total: $", ""))
             };
-            ReservaBLL reservaBLL = new ReservaBLL();
+            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
             bool ok = reservaBLL.RegistrarReserva(nueva);
 
             MessageBox.Show(ok ? "Reserva confirmada." : "Error al registrar la reserva.");

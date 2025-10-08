@@ -43,9 +43,16 @@
   <ItemGroup>
     <Compile Include="CanchaDAL.cs" />
     <Compile Include="CompraDAL.cs" />
-    <Compile Include="Conexion.cs" />
+    <Compile Include="ConexionDAL.cs" />
+    <Compile Include="EncriptadorDAL.cs" />
+    <Compile Include="ICompraRepository.cs" />
+    <Compile Include="IProductoRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IReservaRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="ProductoDAL.cs" />
     <Compile Include="ReservaDAL.cs" />
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="UsuarioDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentaDAL.cs" />

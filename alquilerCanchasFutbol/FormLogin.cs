@@ -34,7 +34,7 @@ namespace alquilerCanchasFutbol
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             string nombre = txtUsuario.Text.Trim();
-            string clave = txtClave.Text;
+            string clave = txtClave.Text.Trim();
             var resultado = usuarioBLL.ValidarLogin(nombre, clave);
             if(!resultado.EsValido)
             {

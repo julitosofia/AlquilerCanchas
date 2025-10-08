@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using alquilerCanchasBE;
 using alquilerCanchasDAL;
 using alquilerCanchasBLL;
+using System.Security.Cryptography;
 
 
 namespace alquilerCanchasFutbol
@@ -19,48 +20,33 @@ namespace alquilerCanchasFutbol
         public Form1()
         {
             InitializeComponent();
-            pictureBox1.Size = new Size(200, 200);
-            btnLogin.Text = "Iniciar Sesion";
-            btnLogin.Size = new Size(150, 40);
-            btnLogin.Location = new Point(100, 220);
-            btnLogin.Click+=btnLogin_Click;
-            this.Controls.Add(btnLogin);
-
-            btnRegistro.Text = "Registrarse";
-            btnRegistro.Size = new Size(150, 40);
-            btnRegistro.Location = new Point(100, 270);
-            btnRegistro.Click += btnRegistro_Click;
-            this.Controls.Add(btnRegistro);
-
-            btnSalir.Text = "Salir";
-            btnSalir.Size = new Size(150, 40);
-            btnSalir.Location = new Point(100, 320);
-            btnSalir.Click += btnSalir_Click;
-            this.Controls.Add(btnSalir);
+            this.IsMdiContainer = true;
+            this.BackColor = System.Drawing.Color.DeepSkyBlue;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.BackColor = System.Drawing.Color.DeepSkyBlue;
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormLogin login = new FormLogin();
-            login.Show();
-            this.Hide();
+            var frm = new FormLogin();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
-        private void btnRegistro_Click(object sender, EventArgs e)
+        private void registroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormRegistro registro = new FormRegistro();
-            registro.Show();
-            this.Hide();
+            var frm = new FormRegistro();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
         }
     }
 }

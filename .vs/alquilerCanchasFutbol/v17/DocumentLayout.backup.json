@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\ejercicios\\alquilerCanchasFutbol\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\compradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\compradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,12 +23,24 @@
       "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\compradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\compradal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\reservabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\reservabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\comprabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\comprabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\conexiondal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\conexiondal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\reservadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,16 +51,16 @@
       "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\reserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\canchadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\canchadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasbll\\canchabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\canchabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formreserva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\reservabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\reservabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formestadisticas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -63,64 +75,112 @@
       "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\productobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\productodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\productodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\productodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\productodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\canchadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\canchadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\usuariodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\usuariobll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\encriptadordal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\encriptadordal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\comprabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\comprabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formproductos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\icomprarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\icomprarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\ireservarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\ireservarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasdal\\iproductorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\iproductorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|d:\\ejercicios\\alquilercanchasfutbol\\alquilercanchasbll\\ventabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\ventabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\ventadetalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\ventadetalle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\ventadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\ventadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbll\\canchabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\canchabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formempleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formmisreservas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -135,28 +195,12 @@
       "RelativeMoniker": "D:0:0:{614911ED-2F88-49F2-9507-D4F43E739AED}|alquilerCanchasBLL\\alquilerCanchasBLL.csproj|solutionrelative:alquilercanchasbll\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
-      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
       "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\classdiagram1.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\loginresultado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|solutionrelative:alquilercanchasbe\\loginresultado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasfutbol\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A38D32D3-48E7-40A6-A5CF-A35FB5624832}|alquilerCanchasFutbol\\alquilerCanchasFutbol.csproj|solutionrelative:alquilercanchasfutbol\\formregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasdal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7ED4CAEB-FA5B-4E3C-8880-8D3FB5F78E78}|alquilerCanchasDAL\\alquilerCanchasDAL.csproj|solutionrelative:alquilercanchasdal\\conexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF2E590B-85FA-4DD0-9E9B-1271E7AFD5B1}|alquilerCanchasBE\\alquilerCanchasBE.csproj|D:\\ejercicios\\alquilerCanchasFutbol\\alquilercanchasbe\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -170,7 +214,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -179,38 +223,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FormCliente.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormCliente.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormCliente.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormCliente.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormCliente.cs [Dise\u00F1o]",
+              "Title": "CompraDAL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CompraDAL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\CompraDAL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CompraDAL.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\CompraDAL.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAmwGEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:56:04.676Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormReserva.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormReserva.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormReserva.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:02:10.891Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormReserva.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormReserva.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormReserva.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAwFYAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:12:19.969Z",
+              "WhenOpened": "2025-09-05T05:16:51.756Z",
               "EditorCaption": ""
             },
             {
@@ -221,9 +241,34 @@
               "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormCompra.cs",
               "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormCompra.cs",
               "RelativeToolTip": "alquilerCanchasFutbol\\FormCompra.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAmwEYAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T18:09:20.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\Form1.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T18:43:24.301Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\Form1.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs",
+              "RelativeToolTip": "alquilerCanchasFutbol\\Form1.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAmwBcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:03:57.209Z",
               "EditorCaption": ""
             },
             {
@@ -241,123 +286,172 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "CompraDAL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CompraDAL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasDAL\\CompraDAL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CompraDAL.cs",
-              "RelativeToolTip": "alquilerCanchasDAL\\CompraDAL.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAgwH8AAAAJAAAAAAAAAA==",
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\UnitOfWork.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\UnitOfWork.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\UnitOfWork.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAwwAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T05:16:51.756Z",
+              "WhenOpened": "2025-10-07T18:33:48.501Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "ReservaBLL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ReservaBLL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBLL\\ReservaBLL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ReservaBLL.cs",
-              "RelativeToolTip": "alquilerCanchasBLL\\ReservaBLL.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowHcAAAAJAAAAAAAAAA==",
+              "Title": "CompraBLL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CompraBLL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBLL\\CompraBLL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CompraBLL.cs",
+              "RelativeToolTip": "alquilerCanchasBLL\\CompraBLL.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:41:34.445Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Reserva.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Reserva.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBE\\Reserva.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Reserva.cs",
-              "RelativeToolTip": "alquilerCanchasBE\\Reserva.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:18:00.232Z",
+              "WhenOpened": "2025-09-05T05:34:37.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "FormProductos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormProductos.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormProductos.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T03:02:28.416Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Compra.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Compra.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBE\\Compra.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Compra.cs",
+              "RelativeToolTip": "alquilerCanchasBE\\Compra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T04:33:57.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ConexionDAL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ConexionDAL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\ConexionDAL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ConexionDAL.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\ConexionDAL.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T20:26:58.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FormReserva.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormReserva.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormReserva.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T03:02:10.891Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "ReservaDAL.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ReservaDAL.cs",
               "RelativeDocumentMoniker": "alquilerCanchasDAL\\ReservaDAL.cs",
               "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ReservaDAL.cs",
               "RelativeToolTip": "alquilerCanchasDAL\\ReservaDAL.cs",
-              "ViewState": "AgIAALsAAAAAAAAAAAAYwG8AAABjAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAmwG0AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-05T03:47:17.305Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CanchaDAL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CanchaDAL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasDAL\\CanchaDAL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CanchaDAL.cs",
-              "RelativeToolTip": "alquilerCanchasDAL\\CanchaDAL.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwCwAAAA7AAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "Reserva.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Reserva.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBE\\Reserva.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Reserva.cs",
+              "RelativeToolTip": "alquilerCanchasBE\\Reserva.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T20:11:53.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ProductoBLL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ProductoBLL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBLL\\ProductoBLL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ProductoBLL.cs",
-              "RelativeToolTip": "alquilerCanchasBLL\\ProductoBLL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T04:35:54.289Z",
+              "WhenOpened": "2025-09-05T03:18:00.232Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "FormReserva.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormReserva.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormReserva.cs",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormReserva.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T03:12:19.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ReservaBLL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ReservaBLL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBLL\\ReservaBLL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ReservaBLL.cs",
+              "RelativeToolTip": "alquilerCanchasBLL\\ReservaBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T03:41:34.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "FormEstadisticas.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEstadisticas.cs",
               "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormEstadisticas.cs",
               "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEstadisticas.cs",
               "RelativeToolTip": "alquilerCanchasFutbol\\FormEstadisticas.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowCwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T18:48:37.643Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CanchaBLL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CanchaBLL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBLL\\CanchaBLL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CanchaBLL.cs",
-              "RelativeToolTip": "alquilerCanchasBLL\\CanchaBLL.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 18,
+              "Title": "FormEmpleado.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEmpleado.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormEmpleado.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEmpleado.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormEmpleado.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T20:12:17.602Z",
+              "WhenOpened": "2025-09-04T04:53:18.978Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductoBLL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ProductoBLL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBLL\\ProductoBLL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ProductoBLL.cs",
+              "RelativeToolTip": "alquilerCanchasBLL\\ProductoBLL.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T04:35:54.289Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UsuarioDAL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\UsuarioDAL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasDAL\\UsuarioDAL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\UsuarioDAL.cs",
-              "RelativeToolTip": "alquilerCanchasDAL\\UsuarioDAL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:10:12.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "FormEstadisticas.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEstadisticas.cs",
               "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormEstadisticas.cs",
@@ -369,20 +463,298 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "ProductoDAL.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ProductoDAL.cs",
               "RelativeDocumentMoniker": "alquilerCanchasDAL\\ProductoDAL.cs",
               "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ProductoDAL.cs",
               "RelativeToolTip": "alquilerCanchasDAL\\ProductoDAL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAlwDwAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-05T04:35:38.409Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\IUnitOfWork.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IUnitOfWork.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T18:32:45.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CanchaDAL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CanchaDAL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\CanchaDAL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\CanchaDAL.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\CanchaDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T20:11:53.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "FormRegistro.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormRegistro.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormRegistro.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:41:01.024Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "FormLogin.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormLogin.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormLogin.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAkwCQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:36:17.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UsuarioDAL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\UsuarioDAL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\UsuarioDAL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\UsuarioDAL.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\UsuarioDAL.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAqwBwAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:10:12.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "FormRegistro.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormRegistro.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormRegistro.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAYwCAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:43:29.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "FormLogin.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormLogin.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormLogin.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:33:54.412Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "UsuarioBLL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\UsuarioBLL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBLL\\UsuarioBLL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\UsuarioBLL.cs",
+              "RelativeToolTip": "alquilerCanchasBLL\\UsuarioBLL.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:09:55.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "EncriptadorDAL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\EncriptadorDAL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\EncriptadorDAL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\EncriptadorDAL.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\EncriptadorDAL.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T03:14:42.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "FormMisReservas.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormMisReservas.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormMisReservas.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormMisReservas.cs",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormMisReservas.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T04:11:27.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "FormProductos.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormProductos.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormProductos.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAC4AAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T04:12:17.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ClassDiagram1.cd",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ClassDiagram1.cd",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\ClassDiagram1.cd",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ClassDiagram1.cd",
+              "RelativeToolTip": "alquilerCanchasDAL\\ClassDiagram1.cd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
+              "WhenOpened": "2025-09-05T05:16:37.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ICompraRepository.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ICompraRepository.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\ICompraRepository.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ICompraRepository.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\ICompraRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T18:23:18.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "IReservaRepository.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IReservaRepository.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\IReservaRepository.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IReservaRepository.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\IReservaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T18:04:17.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IRepository.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\IRepository.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IRepository.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T17:52:57.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IProductoRepository.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IProductoRepository.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\IProductoRepository.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\IProductoRepository.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\IProductoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T17:44:01.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "VentaBLL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\VentaBLL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBLL\\VentaBLL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\VentaBLL.cs",
+              "RelativeToolTip": "alquilerCanchasBLL\\VentaBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T03:59:26.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Venta.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Venta.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBE\\Venta.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Venta.cs",
+              "RelativeToolTip": "alquilerCanchasBE\\Venta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T04:00:56.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "VentaDetalle.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\VentaDetalle.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBE\\VentaDetalle.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\VentaDetalle.cs",
+              "RelativeToolTip": "alquilerCanchasBE\\VentaDetalle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T04:03:17.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "VentaDAL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\VentaDAL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasDAL\\VentaDAL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\VentaDAL.cs",
+              "RelativeToolTip": "alquilerCanchasDAL\\VentaDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T19:26:24.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "CanchaBLL.cs",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CanchaBLL.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasBLL\\CanchaBLL.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CanchaBLL.cs",
+              "RelativeToolTip": "alquilerCanchasBLL\\CanchaBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T20:12:17.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "FormCliente.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormCliente.cs",
+              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormCliente.cs",
+              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormCliente.cs [Dise\u00F1o]",
+              "RelativeToolTip": "alquilerCanchasFutbol\\FormCliente.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T04:56:04.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
               "Title": "FormEmpleado.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEmpleado.cs",
               "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormEmpleado.cs",
@@ -395,136 +767,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "FormEmpleado.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEmpleado.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormEmpleado.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormEmpleado.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormEmpleado.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:53:18.978Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "FormProductos.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormProductos.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormProductos.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACEAAACpAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T04:12:17.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "FormProductos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormProductos.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormProductos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormProductos.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:02:28.416Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 43,
               "Title": "FormMisReservas.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormMisReservas.cs",
               "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormMisReservas.cs",
               "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormMisReservas.cs [Dise\u00F1o]",
               "RelativeToolTip": "alquilerCanchasFutbol\\FormMisReservas.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:04:38.151Z"
+              "WhenOpened": "2025-09-05T03:04:38.151Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "FormMisReservas.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormMisReservas.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormMisReservas.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormMisReservas.cs",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormMisReservas.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T04:11:27.855Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "FormRegistro.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormRegistro.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormRegistro.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:41:01.024Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "UsuarioBLL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\UsuarioBLL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBLL\\UsuarioBLL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\UsuarioBLL.cs",
-              "RelativeToolTip": "alquilerCanchasBLL\\UsuarioBLL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAswCcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:09:55.763Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "FormLogin.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormLogin.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormLogin.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:33:54.412Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\Form1.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs",
-              "RelativeToolTip": "alquilerCanchasFutbol\\Form1.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAD4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:03:57.209Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\Form1.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "alquilerCanchasFutbol\\Form1.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T18:43:24.301Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "CompraBLL.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CompraBLL.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBLL\\CompraBLL.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\CompraBLL.cs",
-              "RelativeToolTip": "alquilerCanchasBLL\\CompraBLL.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwAcAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T05:34:37.615Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 44,
               "Title": "DetalleCompra.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\DetalleCompra.cs",
               "RelativeDocumentMoniker": "alquilerCanchasBE\\DetalleCompra.cs",
@@ -536,19 +791,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Compra.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Compra.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasBE\\Compra.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Compra.cs",
-              "RelativeToolTip": "alquilerCanchasBE\\Compra.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T04:33:57.249Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 45,
               "Title": "FormCliente.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormCliente.cs",
               "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormCliente.cs",
@@ -556,12 +799,11 @@
               "RelativeToolTip": "alquilerCanchasFutbol\\FormCliente.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAWwC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:56:35.041Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-04T04:56:35.041Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 46,
               "Title": "Producto.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Producto.cs",
               "RelativeDocumentMoniker": "alquilerCanchasBE\\Producto.cs",
@@ -573,7 +815,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 47,
               "Title": "ClassDiagram1.cd",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBLL\\ClassDiagram1.cd",
               "RelativeDocumentMoniker": "alquilerCanchasBLL\\ClassDiagram1.cd",
@@ -584,18 +826,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "ClassDiagram1.cd",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ClassDiagram1.cd",
-              "RelativeDocumentMoniker": "alquilerCanchasDAL\\ClassDiagram1.cd",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\ClassDiagram1.cd",
-              "RelativeToolTip": "alquilerCanchasDAL\\ClassDiagram1.cd",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
-              "WhenOpened": "2025-09-05T05:16:37.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 48,
               "Title": "ClassDiagram1.cd",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\ClassDiagram1.cd",
               "RelativeDocumentMoniker": "alquilerCanchasBE\\ClassDiagram1.cd",
@@ -606,19 +837,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "FormLogin.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormLogin.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormLogin.cs",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormLogin.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAiwEUAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:36:17.023Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 49,
               "Title": "LoginResultado.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\LoginResultado.cs",
               "RelativeDocumentMoniker": "alquilerCanchasBE\\LoginResultado.cs",
@@ -630,31 +849,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "FormRegistro.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasFutbol\\FormRegistro.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasFutbol\\FormRegistro.cs",
-              "RelativeToolTip": "alquilerCanchasFutbol\\FormRegistro.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:43:29.454Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "Conexion.cs",
-              "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\Conexion.cs",
-              "RelativeDocumentMoniker": "alquilerCanchasDAL\\Conexion.cs",
-              "ToolTip": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasDAL\\Conexion.cs",
-              "RelativeToolTip": "alquilerCanchasDAL\\Conexion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T04:58:36.079Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 50,
               "Title": "Usuario.cs",
               "DocumentMoniker": "D:\\ejercicios\\alquilerCanchasFutbol\\alquilerCanchasBE\\Usuario.cs",
               "RelativeDocumentMoniker": "alquilerCanchasBE\\Usuario.cs",

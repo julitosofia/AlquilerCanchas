@@ -1,5 +1,6 @@
 ﻿using alquilerCanchasBE;
 using alquilerCanchasBLL;
+using alquilerCanchasDAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace alquilerCanchasFutbol
         }
         private void CargarReservas()
         {
-            ReservaBLL reservaBLL = new ReservaBLL();
+            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
             var reservas = reservaBLL.ObtenerReservasPorUsuario(usuario.IdUsuario);
             dgvReservas.DataSource=reservas;
         }
@@ -42,7 +43,7 @@ namespace alquilerCanchasFutbol
                 MessageBox.Show("No se puede cancelar una reserva pasada.");
                 return;
             }
-            ReservaBLL reservaBLL = new ReservaBLL();
+            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
             bool ok = reservaBLL.CancelarReserva(reserva.IdReserva);
             MessageBox.Show(ok ? "Reserva cancelada correctamente." : "Error al cancelar la reserva.");
             CargarReservas();

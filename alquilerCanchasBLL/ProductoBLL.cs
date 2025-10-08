@@ -9,48 +9,60 @@ namespace alquilerCanchasBLL
 {
     public class ProductoBLL
     {
-        private ProductoDAL dal = new ProductoDAL();
+        private readonly IProductoRepository repo;
+
+        public ProductoBLL(IProductoRepository repo)
+        {
+            this.repo = repo;
+        }
 
         public List<Producto> ObtenerTodos()
         {
-            return dal.Listar();
+            return repo.Listar();
         }
-        public bool RegistrarVenta(int idProducto,int cantidadVendida, out string mensaje)
+
+        public bool RegistrarVenta(int idProducto, int cantidadVendida, out string mensaje)
         {
-            var producto = dal.Listar().FirstOrDefault(p => p.IdProducto == idProducto);
-            if(producto == null)
+            Producto producto = repo.ObtenerPorId(idProducto);
+
+            if (producto == null)
             {
                 mensaje = "Producto no encontrado.";
                 return false;
             }
-            if(producto.Stock<cantidadVendida)
+
+            if (producto.Stock < cantidadVendida)
             {
                 mensaje = $"Stock insuficiente. Disponible: {producto.Stock}";
                 return false;
             }
-            bool actualizado = dal.ActualiarStock(idProducto, cantidadVendida);
-            mensaje = actualizado ? "Venta registrada y stock actualizado." : "Error al actualizar el stock.";
-            return actualizado;
+
+            int resultado = repo.ActualizarStock(idProducto, cantidadVendida);
+            mensaje = resultado > 0 ? "Venta registrada y stock actualizado." : "Error al actualizar el stock.";
+            return resultado > 0;
         }
+
         public bool AgregarProducto(Producto p)
         {
-            if(string.IsNullOrWhiteSpace(p.Nombre) || p.Precio<=0 || p.Stock<0 || string.IsNullOrWhiteSpace(p.Categoria))
-            {
+            if (string.IsNullOrWhiteSpace(p.Nombre) || p.Precio <= 0 || p.Stock < 0 || string.IsNullOrWhiteSpace(p.Categoria))
                 return false;
-            }
-            return dal.Insertar(p);
+
+            return repo.Insertar(p);
         }
+
         public bool ModificarProducto(Producto p)
         {
-            if(p.IdProducto<=0 || string.IsNullOrWhiteSpace(p.Nombre) || p.Precio<=0 || p.Stock<0 || string.IsNullOrWhiteSpace(p.Categoria))
-            {
+            if (p.IdProducto <= 0 || string.IsNullOrWhiteSpace(p.Nombre) || p.Precio <= 0 || p.Stock < 0 || string.IsNullOrWhiteSpace(p.Categoria))
                 return false;
-            }
-            return dal.Actualizar(p);
+
+            return repo.Actualizar(p);
         }
+
         public bool EliminarProducto(int idProducto)
         {
-            return dal.Eliminar(idProducto);
+            return repo.Eliminar(idProducto);
         }
+
+
     }
 }

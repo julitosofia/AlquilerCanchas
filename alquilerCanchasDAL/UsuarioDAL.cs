@@ -10,117 +10,83 @@ namespace alquilerCanchasDAL
 {
     public class UsuarioDAL
     {
-        private string connectionString = Conexion.Cadena;
-        public Usuario ObtenerPorCredenciales(string usuario, string clave)
-        {
-            using (SqlConnection cn = new SqlConnection(connectionString))
-            {
-                cn.Open();
-                string query = @"SELECT * FROM Usuario WHERE Nombre = @u AND Clave=@c";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    cmd.Parameters.AddWithValue("@u", usuario);
-                    cmd.Parameters.AddWithValue("@c", clave);
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.Read())
-                        {
-                            return new Usuario
-                            {
-                                IdUsuario = (int)dr["IdUsuario"],
-                                Nombre = dr["Nombre"].ToString(),
-                                Clave = dr["Clave"].ToString(),
-                                Rol = dr["Rol"].ToString()
+        private readonly ConexionDAL conexion = new ConexionDAL();
 
-                            };
-                        }
-                    }
-                }
-                return null;
-            }
-        }
-        public List<Usuario> Listar()
+        public bool Login(string nombre, string clave)
         {
-            var lista = new List<Usuario>();
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
+            var parametros = new List<SqlParameter>
             {
-                cn.Open();
-                string query = "SELECT * FROM Usuario";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                new SqlParameter("@Nombre",nombre),
+                new SqlParameter("@Clave",clave)
+            };
+            using(var reader = conexion.EjecutarReader("SP_Login",parametros))
+            {
+                if (reader.Read())
+                    return Convert.ToInt32(reader["Autenticado"]) == 1;
+            }
+            return false;
+        }
+        public Usuario ObtenerPorCredencialesPlano(string nombre, string clave)
+        {
+            var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Nombre",nombre),
+                new SqlParameter("@Clave",clave)
+            };
+            using(var reader = conexion.EjecutarReader("SP_ObtenerPorCredencialesPlano",parametros))
+            {
+                if(reader.Read())
                 {
-                    while (dr.Read())
+                    return new Usuario
                     {
-                        lista.Add(new Usuario
-                        {
-                            IdUsuario = (int)dr["IdUsuario"],
-                            Nombre = dr["Nombre"].ToString(),
-                            Rol = dr["Rol"].ToString(),
-                            Clave = dr["Clave"].ToString()
-                        });
-                    }
-                }
-                return lista;
-            }
-        }
-
-        public bool Insertar(Usuario u)
-        {
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
-            {
-                cn.Open();
-                string query = "INSERT INTO Usuario (IdUsuario,Nombre,Rol,Clave) VALUES(@IdUsuario,@Nombre,@Rol,@Clave)";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    cmd.Parameters.AddWithValue("@IdUsuario", u.IdUsuario);
-                    cmd.Parameters.AddWithValue("@Nombre", u.Nombre);
-                    cmd.Parameters.AddWithValue("@Rol", u.Rol);
-                    cmd.Parameters.AddWithValue("@Clave", u.Clave);
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
-        }
-
-        public Usuario Login(string nombre, string clave)
-        {
-            using (SqlConnection cn = new SqlConnection(Conexion.Cadena))
-            {
-                cn.Open();
-                string query = "SELECT * FROM Usuario WHERE Nombre = @Nombre AND Clave =@Clave";
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    cmd.Parameters.AddWithValue("@Clave", clave);
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.Read())
-                        {
-                            return new Usuario
-                            {
-                                IdUsuario = (int)dr["IdUsuario"],
-                                Nombre = dr["Nombre"].ToString(),
-                                Rol = dr["Rol"].ToString(),
-                                Clave = dr["Clave"].ToString()
-                            };
-                        }
-                    }
+                        IdUsuario = (int)reader["IdUsuario"],
+                        Nombre = reader["Nombre"].ToString(),
+                        Clave = reader["Clave"].ToString(),
+                        Rol = reader["Rol"].ToString()
+                    };
                 }
             }
             return null;
         }
         public bool ExisteNombreUsuario(string nombre)
         {
-            using(SqlConnection cn = new SqlConnection(Conexion.Cadena))
+            var parametros = new List<SqlParameter>
             {
-                cn.Open();
-                string query = "SELECT COUNT (*) FROM Usuario WHERE Nombre = @Nombre";
-                using(SqlCommand cmd = new SqlCommand(query, cn))
+                new SqlParameter("@Nombre",nombre)
+            };
+            using(var reader = conexion.EjecutarReader("SP_ExisteNombreUsuario",parametros))
+            {
+                if (reader.Read())
+                    return Convert.ToInt32(reader["Existe"]) == 1;
+            }
+            return false;
+        }
+        public List<Usuario>Listar()
+        {
+            var lista = new List<Usuario>();
+            using(var reader = conexion.EjecutarReader("SP_ListarUsuarios",null))
+            {
+                while(reader.Read())
                 {
-                    cmd.Parameters.AddWithValue("@Nombre", nombre);
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
+                    lista.Add(new Usuario
+                    {
+                        IdUsuario = (int)reader["IdUsuario"],
+                        Nombre = reader["Nombre"].ToString(),
+                        Rol = reader["Rol"].ToString()
+                    });
                 }
             }
+            return lista;
+        }
+        public bool RegistrarUsuario(Usuario usuario)
+        {
+            var parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@Nombre",usuario.Nombre),
+                new SqlParameter("@Clave",usuario.Clave),
+                new SqlParameter("@Rol",usuario.Rol)
+            };
+            return conexion.EjecutarNonQuery("SP_InsertarUsuario", parametros) > 0;
         }
     }
 }

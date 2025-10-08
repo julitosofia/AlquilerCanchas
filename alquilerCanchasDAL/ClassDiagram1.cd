@@ -3,7 +3,7 @@
   <Class Name="alquilerCanchasDAL.UsuarioDAL" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAgAACAAAAAIAIAAAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEAAAAAAACAAAAAIAAAAAAAAAAAQAAAAQAE=</HashCode>
       <FileName>UsuarioDAL.cs</FileName>
       <NewMemberFileName>UsuarioDal.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -11,44 +11,98 @@
   <Class Name="alquilerCanchasDAL.ProductoDAL" Collapsed="true">
     <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEQAAAgAAAAACAAAAIAAAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAERAAACAAQAAAAAAIIAAAAAIAAAAAAAAAAA=</HashCode>
       <FileName>ProductoDAL.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="alquilerCanchasDAL.ReservaDAL" Collapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAEQgAAAAgAAAAAAAAIAggAAIAAAAAAAAAAA=</HashCode>
-      <FileName>ReservaDAL.cs</FileName>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="alquilerCanchasDAL.CanchaDAL" Collapsed="true">
     <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAIAAAAAAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEQAAACAAAAAAAAAAIAAAAAIAAAAAAAAAAE=</HashCode>
       <FileName>CanchaDAL.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="alquilerCanchasDAL.VentaDAL" Collapsed="true">
     <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEQACAAAAAAAAAAAAAAgAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIQACAAAAAAAAAAAAAAgAAAAAAAQAAAAAAE=</HashCode>
       <FileName>VentaDAL.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="alquilerCanchasDAL.Conexion" Collapsed="true">
-    <Position X="2.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Conexion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="alquilerCanchasDAL.CompraDAL" Collapsed="true">
     <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgQAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAQAAAAAAAAQAAAAAICAAAAAAABAAAAAAAAAE=</HashCode>
       <FileName>CompraDAL.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
+  <Class Name="alquilerCanchasDAL.ConexionDAL" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAIAQAAgIAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConexionDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.EncriptadorDAL" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>EncriptadorDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="alquilerCanchasDAL.ReservaDAL" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQgAACAgQEAAAAAAIACgAAIAAAAAAAAAAE=</HashCode>
+      <FileName>ReservaDAL.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="alquilerCanchasDAL.UnitOfWork" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAQCQAAAAQAAAAAAAAAACAAAAIAAAAA=</HashCode>
+      <FileName>UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="alquilerCanchasDAL.IProductoRepository" Collapsed="true">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAERAAACAAAAAAAAAAIAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>IProductoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="alquilerCanchasDAL.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="2.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQAAACAAAAAAAAAAIAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="alquilerCanchasDAL.IReservaRepository" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAgAEAAAAAAAACgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IReservaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="alquilerCanchasDAL.ICompraRepository" Collapsed="true">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAICAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>ICompraRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="alquilerCanchasDAL.IUnitOfWork" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAACQAAAAQAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

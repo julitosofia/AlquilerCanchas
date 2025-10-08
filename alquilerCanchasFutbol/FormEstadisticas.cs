@@ -23,15 +23,23 @@ namespace alquilerCanchasFutbol
         }
         private void CargarCompras()
         {
-            CompraBLL compraBLL = new CompraBLL();
+            CompraBLL compraBLL = new CompraBLL(new CompraDAL(), new ProductoDAL());
             var compras = compraBLL.ObtenerTodas();
             dgvCompras.DataSource = compras;
             MostrarTotal(compras);
         }
+        private void CargarCategorias()
+        {
+            var productoBLL = new ProductoBLL(new ProductoDAL());
+            var categorias = productoBLL.ObtenerTodos();
+            cmbCategoria.DataSource = categorias;
+            cmbCategoria.DisplayMember = "Nombre";
+            cmbCategoria.ValueMember = "Categoria";
+        }
 
         private void FormEstadisticas_Load(object sender, EventArgs e)
         {
-
+            CargarCategorias();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -39,7 +47,7 @@ namespace alquilerCanchasFutbol
             string categoria = cmbCategoria.SelectedItem?.ToString();
             string nombre = txtNombreProducto.Text.Trim().ToLower();
 
-            CompraBLL compraBLL = new CompraBLL();
+            CompraBLL compraBLL = new CompraBLL(new CompraDAL(), new ProductoDAL());
             var compras = compraBLL.ObtenerTodas()
                 .Where(c=>c.Detalles.Any(d=>(string.IsNullOrEmpty(categoria) || d.Categoria.Equals(categoria,StringComparison.OrdinalIgnoreCase)) &&
                 (string.IsNullOrEmpty(nombre) || d.NombreProducto.ToLower().Contains(nombre))))
@@ -51,7 +59,7 @@ namespace alquilerCanchasFutbol
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             string cliente = txtNombreCliente.Text.Trim().ToLower();
-            CompraBLL compraBLL =new CompraBLL();
+            CompraBLL compraBLL =new CompraBLL(new CompraDAL(), new ProductoDAL());
             var compras = compraBLL.ObtenerTodas()
                 .Where(c=>c.Cliente.ToLower().Contains(cliente))
                 .ToList();
