@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "alquilerCanchasDAL", "alqui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "alquilerCanchasBLL", "alquilerCanchasBLL\alquilerCanchasBLL.csproj", "{614911ED-2F88-49F2-9507-D4F43E739AED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{EA4CB3F3-5BF7-4501-A86B-70F79153ACE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{614911ED-2F88-49F2-9507-D4F43E739AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{614911ED-2F88-49F2-9507-D4F43E739AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{614911ED-2F88-49F2-9507-D4F43E739AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA4CB3F3-5BF7-4501-A86B-70F79153ACE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4CB3F3-5BF7-4501-A86B-70F79153ACE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4CB3F3-5BF7-4501-A86B-70F79153ACE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4CB3F3-5BF7-4501-A86B-70F79153ACE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

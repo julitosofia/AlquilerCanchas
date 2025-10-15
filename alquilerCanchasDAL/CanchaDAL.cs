@@ -15,45 +15,46 @@ namespace alquilerCanchasDAL
         public List<Cancha>Listar()
         {
             var lista = new List<Cancha>();
-            using(SqlConnection cn = new SqlConnection(conexion.CadenaConexion))
+            var cn = new SqlConnection(conexion.CadenaConexion);
+            cn.Open();
+
+            var cmd = new SqlCommand("SP_ListarCancha", cn)
             {
-                cn.Open();
-                using(SqlCommand cmd = new SqlCommand("SP_ListarCancha",cn))
+                CommandType = CommandType.StoredProcedure
+            };
+            var dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                lista.Add(new Cancha
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    using(SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while(dr.Read())
-                        {
-                            lista.Add(new Cancha
-                            {
-                                IdCancha = (int)dr["IdCancha"],
-                                Nombre = dr["Nombre"].ToString(),
-                                Tipo = dr["Tipo"].ToString(),
-                                PrecioHora = (decimal)dr["PrecioHora"]
-                            });
-                        }
-                    }
-                }
-                return lista;
+                    IdCancha = (int)dr["IdCancha"],
+                    Nombre = dr["Nombre"].ToString(),
+                    Tipo = dr["Tipo"].ToString(),
+                    PrecioHora = (decimal)dr["Preciohora"]
+                });
             }
+            dr.Close();
+            cn.Close();
+            return lista;
         }
+
         public Cancha ObtenerPorId(int id)
         {
             var parametros = new List<SqlParameter> { new SqlParameter("@IdCancha", id) };
-            using(var reader= conexion.EjecutarReader("SP_ObtenerCanchaPorId",parametros))
+            var reader = conexion.EjecutarReader("SP_ObtenerCanchaPorId", parametros);
+            if(reader.Read())
             {
-                if(reader.Read())
+                var cancha = new Cancha
                 {
-                    return new Cancha
-                    {
-                        IdCancha = (int)reader["IdCancha"],
-                        Nombre = reader["Nombre"].ToString(),
-                        Tipo = reader["Tipo"].ToString(),
-                        PrecioHora = (decimal)reader["PrecioHora"]
-                    };
-                }
+                    IdCancha = (int)reader["IdCancha"],
+                    Nombre = reader["Nombre"].ToString(),
+                    Tipo = reader["Tipo"].ToString(),
+                    PrecioHora = (decimal)reader["PrecioHora"]
+                };
+                reader.Close();
+                return cancha;
             }
+            reader.Close();
             return null;
         }
         public bool Insertar(Cancha cancha)

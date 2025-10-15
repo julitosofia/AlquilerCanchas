@@ -11,11 +11,16 @@ namespace alquilerCanchasBLL
 {
     public class UsuarioBLL
     {
-        private UsuarioDAL dal = new UsuarioDAL();
+        private readonly UsuarioDAL dal;
 
-        public LoginResultado ValidarLogin(string nombre,string clave)
+        public UsuarioBLL()
         {
-            if(string.IsNullOrWhiteSpace(nombre)  || string.IsNullOrWhiteSpace(clave))
+            dal = new UsuarioDAL();
+        }
+
+        public LoginResultado ValidarLogin(string nombre, string clave)
+        {
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(clave))
             {
                 return new LoginResultado
                 {
@@ -23,9 +28,10 @@ namespace alquilerCanchasBLL
                     Mensaje = "Todos los campos son obligatorios."
                 };
             }
-            Usuario usuario = dal.ObtenerPorCredencialesPlano(nombre, clave);
 
-            if(usuario == null)
+            var usuario = dal.ObtenerPorCredencialesPlano(nombre, clave);
+
+            if (usuario == null)
             {
                 return new LoginResultado
                 {
@@ -33,22 +39,57 @@ namespace alquilerCanchasBLL
                     Mensaje = "Usuario o clave incorrectos."
                 };
             }
+
             return new LoginResultado
             {
                 EsValido = true,
                 Usuario = usuario
             };
         }
-        public static bool RegistrarUsuario(Usuario nuevo)
+
+        public bool RegistrarUsuario(Usuario nuevo, out string mensaje)
         {
-            UsuarioDAL dal = new UsuarioDAL();
+            mensaje = ValidarUsuario(nuevo);
+
+            if (!string.IsNullOrEmpty(mensaje))
+                return false;
+
+            if (!NombreUsuarioDisponible(nuevo.Nombre))
+            {
+                mensaje = "El nombre de usuario ya está en uso.";
+                return false;
+            }
+
             return dal.RegistrarUsuario(nuevo);
         }
-        public List<Usuario> ObtenerUsuario() => dal.Listar();
+
+        public List<Usuario> ObtenerUsuarios()
+        {
+            return dal.Listar();
+        }
 
         public bool NombreUsuarioDisponible(string nombre)
         {
             return !dal.ExisteNombreUsuario(nombre);
         }
+
+        private string ValidarUsuario(Usuario u)
+        {
+            if (u == null)
+                return "El usuario no puede ser nulo.";
+
+            if (string.IsNullOrWhiteSpace(u.Nombre))
+                return "El nombre de usuario es obligatorio.";
+
+            if (string.IsNullOrWhiteSpace(u.Clave))
+                return "La clave es obligatoria.";
+
+            if (string.IsNullOrWhiteSpace(u.Rol))
+                return "Debe especificar el rol.";
+
+            return string.Empty;
+        }
+
+
     }
 }

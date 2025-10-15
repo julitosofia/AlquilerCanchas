@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Utils.ValidadorRegex" Collapsed="true">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAEAAEAAAAAAAAgAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidadorRegex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils.ValidadorDatos" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAABAAEACAAIAACAAAAAAAAAkAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidadorDatos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -7,10 +7,33 @@ namespace alquilerCanchasBE
 {
     public class Compra
     {
-        public int IdCompra { get; set; }
-        public string Cliente { get; set; }
-        public DateTime Fecha { get; set; }
-        public List<DetalleCompra>Detalles { get; set; }
+        private int idCompra;
+        private string cliente;
+        private DateTime fecha;
 
+        public int IdCompra
+        {
+            get => idCompra;
+            set => idCompra = value >= 0 ? value : throw new ArgumentException("IdCompra invalido.");
+        }
+        public string Cliente
+        {
+            get => cliente;
+            set => cliente = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Cliente invalido");
+        }
+        public DateTime Fecha
+        {
+            get => fecha;
+            set => fecha = value;
+        }
+        public List<DetalleCompra> Detalles { get; set; } = new List<DetalleCompra>();
+
+        public Compra() { }
+
+        public Compra(string cliente, DateTime fecha)
+        {
+            Cliente = cliente;
+            Fecha = fecha;
+        }
     }
 }

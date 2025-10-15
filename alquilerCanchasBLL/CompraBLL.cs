@@ -20,19 +20,10 @@ namespace alquilerCanchasBLL
 
         public bool RegistrarCompra(Compra compra, out string mensaje)
         {
-            mensaje = "";
+            mensaje = string.Empty;
 
-            if (compra == null || compra.Detalles == null || compra.Detalles.Count == 0)
-            {
-                mensaje = "La compra no contiene productos.";
+            if (!ValidarCompra(compra, out mensaje))
                 return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(compra.Cliente))
-            {
-                mensaje = "Debe especificar el cliente.";
-                return false;
-            }
 
             foreach (var detalle in compra.Detalles)
             {
@@ -58,57 +49,85 @@ namespace alquilerCanchasBLL
         public List<Compra> ListarCompras()
         {
             var lista = new List<Compra>();
-            using (var reader = compraRepo.ListarCompra())
+            var reader = compraRepo.ListarCompra();
+
+            while (reader.Read())
             {
-                while (reader.Read())
+                lista.Add(new Compra
                 {
-                    lista.Add(new Compra
-                    {
-                        IdCompra = (int)reader["IdVenta"],
-                        Fecha = (DateTime)reader["Fecha"],
-                        Cliente = reader["Usuario"].ToString()
-                    });
-                }
+                    IdCompra = (int)reader["IdVenta"],
+                    Fecha = (DateTime)reader["Fecha"],
+                    Cliente = reader["Usuario"].ToString()
+                });
             }
+
+            reader.Close();
             return lista;
         }
 
         public List<DetalleCompra> ObtenerDetalles(int idCompra)
         {
             var lista = new List<DetalleCompra>();
-            using (var reader = compraRepo.ObtenerDetallesPorCompra(idCompra))
+            var reader = compraRepo.ObtenerDetallesPorCompra(idCompra);
+
+            while (reader.Read())
             {
-                while (reader.Read())
+                lista.Add(new DetalleCompra
                 {
-                    lista.Add(new DetalleCompra
-                    {
-                        IdProducto = (int)reader["IdProducto"],
-                        NombreProducto = reader["Nombre"].ToString(),
-                        Cantidad = (int)reader["Cantidad"],
-                        PrecioUnitario = (decimal)reader["PrecioUnitario"],
-                        Categoria = reader["Categoria"].ToString()
-                    });
-                }
+                    IdProducto = (int)reader["IdProducto"],
+                    NombreProducto = reader["Nombre"].ToString(),
+                    Cantidad = (int)reader["Cantidad"],
+                    PrecioUnitario = (decimal)reader["PrecioUnitario"],
+                    Categoria = reader["Categoria"].ToString()
+                });
             }
+
+            reader.Close();
             return lista;
         }
 
         public List<Compra> ObtenerTodas()
         {
             var lista = new List<Compra>();
-            using (var reader = compraRepo.ObtenerTodasLasCompras())
+            var reader = compraRepo.ObtenerTodasLasCompras();
+
+            while (reader.Read())
             {
-                while (reader.Read())
+                lista.Add(new Compra
                 {
-                    lista.Add(new Compra
-                    {
-                        IdCompra = (int)reader["IdVenta"],
-                        Fecha = (DateTime)reader["Fecha"],
-                        Cliente = reader["Usuario"].ToString()
-                    });
-                }
+                    IdCompra = (int)reader["IdVenta"],
+                    Fecha = (DateTime)reader["Fecha"],
+                    Cliente = reader["Usuario"].ToString()
+                });
             }
+
+            reader.Close();
             return lista;
+        }
+
+        private bool ValidarCompra(Compra compra, out string mensaje)
+        {
+            mensaje = string.Empty;
+
+            if (compra == null)
+            {
+                mensaje = "La compra no puede ser nula.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(compra.Cliente))
+            {
+                mensaje = "Debe especificar el cliente.";
+                return false;
+            }
+
+            if (compra.Detalles == null || compra.Detalles.Count == 0)
+            {
+                mensaje = "La compra no contiene productos.";
+                return false;
+            }
+
+            return true;
         }
 
 

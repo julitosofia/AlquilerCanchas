@@ -9,12 +9,71 @@ namespace alquilerCanchasBLL
 {
     public class CanchaBLL
     {
-        private CanchaDAL dal = new CanchaDAL();
+        private readonly IRepository<Cancha> dal;
 
-        public List<Cancha> ObtenerTodas() => dal.Listar();
-        public bool AgregarCancha(Cancha c) => dal.Insertar(c);
-        public bool ModificarCancha(Cancha c) => dal.Actualizar(c);
-        public bool EliminarCanca(int idCancha) => dal.Eliminar(idCancha);
+        public CanchaBLL(IRepository<Cancha> dal)
+        {
+            this.dal = dal;
+        }
+
+        public List<Cancha> ObtenerTodas()
+        {
+            return dal.Listar();
+        }
+
+        public bool AgregarCancha(Cancha cancha, out string mensaje)
+        {
+            mensaje = ValidarCancha(cancha);
+
+            if (!string.IsNullOrEmpty(mensaje))
+                return false;
+
+            return dal.Insertar(cancha);
+        }
+
+        public bool ModificarCancha(Cancha cancha, out string mensaje)
+        {
+            if (cancha.IdCancha <= 0)
+            {
+                mensaje = "Id de cancha inválido.";
+                return false;
+            }
+
+            mensaje = ValidarCancha(cancha);
+
+            if (!string.IsNullOrEmpty(mensaje))
+                return false;
+
+            return dal.Actualizar(cancha);
+        }
+
+        public bool EliminarCancha(int idCancha, out string mensaje)
+        {
+            mensaje = string.Empty;
+
+            if (idCancha <= 0)
+            {
+                mensaje = "Id inválido.";
+                return false;
+            }
+
+            return dal.Eliminar(idCancha);
+        }
+
+        private string ValidarCancha(Cancha cancha)
+        {
+            if (string.IsNullOrWhiteSpace(cancha.Nombre))
+                return "El nombre de la cancha es obligatorio.";
+
+            if (string.IsNullOrWhiteSpace(cancha.Tipo))
+                return "El tipo de cancha es obligatorio.";
+
+            if (cancha.PrecioHora < 0)
+                return "El precio por hora no puede ser negativo.";
+
+            return string.Empty;
+        }
+
 
     }
 }

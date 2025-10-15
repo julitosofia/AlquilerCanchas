@@ -21,23 +21,29 @@ namespace alquilerCanchasBLL
             return reservaRepo.Listar();
         }
 
+        public List<Reserva> ObtenerReservasPorUsuario(int idUsuario)
+        {
+            return reservaRepo.ObtenerReservasPorUsuario(idUsuario);
+        }
+
         public bool TurnoDisponible(int idCancha, DateTime fecha, DateTime inicio, DateTime fin)
         {
             var lista = new List<Reserva>();
-            using (var reader = reservaRepo.ObtenerReservasPorCanchaYFecha(idCancha, fecha))
+            var reader = reservaRepo.ObtenerReservasPorCanchaYFecha(idCancha, fecha);
+
+            while (reader.Read())
             {
-                while (reader.Read())
+                var reserva = new Reserva
                 {
-                    var reserva = new Reserva
-                    {
-                        HoraInicio = (DateTime)reader["HoraInicio"],
-                        HoraFin = (DateTime)reader["HoraFin"],
-                        Estado = reader["Estado"].ToString()
-                    };
-                    if (reserva.Estado == "ACTIVA")
-                        lista.Add(reserva);
-                }
+                    HoraInicio = (DateTime)reader["HoraInicio"],
+                    HoraFin = (DateTime)reader["HoraFin"],
+                    Estado = reader["Estado"].ToString()
+                };
+                if (reserva.Estado == "ACTIVA")
+                    lista.Add(reserva);
             }
+
+            reader.Close();
 
             return !lista.Any(r => (inicio < r.HoraFin) && (fin > r.HoraInicio));
         }
@@ -63,9 +69,12 @@ namespace alquilerCanchasBLL
 
         public bool ReservarCancha(Reserva r, out string mensaje)
         {
-            bool disponible = TurnoDisponible(r.IdCancha, r.Fecha, r.HoraInicio, r.HoraFin);
+            mensaje = ValidarReserva(r);
 
-            if (!disponible)
+            if (!string.IsNullOrEmpty(mensaje))
+                return false;
+
+            if (!TurnoDisponible(r.IdCancha, r.Fecha, r.HoraInicio, r.HoraFin))
             {
                 mensaje = "La cancha ya está reservada en ese horario.";
                 return false;
@@ -87,11 +96,6 @@ namespace alquilerCanchasBLL
         {
             nueva.Estado = "ACTIVA";
             return reservaRepo.Insertar(nueva);
-        }
-
-        public List<Reserva> ObtenerReservasPorUsuario(int idUsuario)
-        {
-            return reservaRepo.ObtenerReservasPorUsuario(idUsuario);
         }
 
         public bool CancelarReserva(int idReserva)
@@ -124,6 +128,26 @@ namespace alquilerCanchasBLL
             bool ok = reservaRepo.CancelarReserva(idReserva) > 0;
             mensaje = ok ? "Reserva cancelada correctamente." : "Error al cancelar la reserva.";
             return ok;
+        }
+
+        private string ValidarReserva(Reserva r)
+        {
+            if (r == null)
+                return "La reserva no puede ser nula.";
+
+            if (r.IdCancha <= 0)
+                return "Debe seleccionar una cancha.";
+
+            if (r.IdUsuario <= 0)
+                return "Usuario inválido.";
+
+            if (string.IsNullOrWhiteSpace(r.Cliente))
+                return "Debe ingresar el nombre del cliente.";
+
+            if (r.HoraInicio >= r.HoraFin)
+                return "La hora de inicio debe ser anterior a la hora de fin.";
+
+            return string.Empty;
         }
 
 

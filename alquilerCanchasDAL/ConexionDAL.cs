@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 
 namespace alquilerCanchasDAL
@@ -10,7 +11,10 @@ namespace alquilerCanchasDAL
     public class ConexionDAL
     {
         private readonly string cadena = @"Data Source=BILARDO;Initial Catalog=AlquilerCanchas;Integrated Security=True;";
+        private SqlConnection conexion;
+        private SqlTransaction transaccion;
         public string CadenaConexion => cadena;
+        public SqlTransaction Transaccion => transaccion;
         public int EjecutarNonQuery(string nombreSP, List<SqlParameter> parametros)
         {
             using(var conn = new SqlConnection(cadena))
@@ -52,6 +56,36 @@ namespace alquilerCanchasDAL
                     return cmd.ExecuteScalar();
                 }
             }
+        }
+        public SqlConnection Abrir()
+        {
+            if (conexion == null)
+                conexion = new SqlConnection(cadena);
+            if(conexion.State != ConnectionState.Open)
+                conexion.Open();
+            return conexion;
+        }
+        public void Cerrar()
+        {
+            if (conexion != null && conexion.State == ConnectionState.Open)
+                conexion.Close();
+        }
+        public void IniciarTransaccion()
+        {
+            if (conexion == null || conexion.State != ConnectionState.Open)
+                Abrir();
+
+            transaccion = conexion.BeginTransaction();
+        }
+        public void ConfirmarTransaccion()
+        {
+            transaccion?.Commit();
+            Cerrar();
+        }
+        public void CancelarTransaccion()
+        {
+            transaccion?.Rollback();
+            Cerrar();
         }
     }
 }

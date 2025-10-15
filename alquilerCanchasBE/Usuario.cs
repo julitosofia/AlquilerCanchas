@@ -8,11 +8,45 @@ namespace alquilerCanchasBE
 {
     public class Usuario
     {
-        public int IdUsuario { get; set; }
-        public string Nombre { get; set; }
-        public string Rol { get; set; }
-        public string Clave { get; set; }
+        private int idUsuario;
+        private string nombre;
+        private string rol;
+        private string clave;
 
-        public ICollection<Venta> Ventas { get; set; }
+        public int IdUsuario
+        {
+            get => idUsuario;
+            set => idUsuario = value > 0 ? value : throw new ArgumentException("IdUsuario invalido.");
+        }
+        public string Nombre
+        {
+            get => nombre;
+            set => nombre = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Nombre invalido.");
+        }
+        public string Rol
+        {
+            get => rol;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Rol requerido");
+                if (value != "ADMIN" && value != "USUARIO") throw new ArgumentException("Rol invalido");
+                rol = value;    
+            }
+        }
+        public string Clave
+        {
+            get => clave;
+            set => clave = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Clave requerido");
+        }
+
+        public ICollection<Venta> Ventas { get; set; } = new List<Venta>();
+
+        public Usuario() { }
+        public Usuario(string nombre, string rol, string clave)
+        {
+            Nombre = nombre;
+            Rol = rol;
+            Clave = clave;
+        }
     }
 }

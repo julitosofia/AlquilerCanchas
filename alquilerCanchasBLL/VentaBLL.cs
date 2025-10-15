@@ -9,18 +9,23 @@ namespace alquilerCanchasBLL
 {
     public class VentaBLL
     {
-        private readonly VentaDAL dal = new VentaDAL();
+        private readonly VentaDAL dal;
 
-        public bool RegistrarVenta(Venta v, List<VentaDetalle> detalles, out string mensaje)
+        public VentaBLL()
         {
-            if (detalles == null || detalles.Count == 0)
-            {
-                mensaje = "La venta no tiene productos.";
-                return false;
-            }
+            dal = new VentaDAL();
+        }
 
-            v.Total = detalles.Sum(d => d.PrecioUnitario * d.Cantidad);
-            bool ok = dal.InsertarVenta(v, detalles);
+        public bool RegistrarVenta(Venta venta, List<VentaDetalle> detalles, out string mensaje)
+        {
+            mensaje = ValidarVenta(venta, detalles);
+
+            if (!string.IsNullOrEmpty(mensaje))
+                return false;
+
+            venta.Total = detalles.Sum(d => d.PrecioUnitario * d.Cantidad);
+
+            bool ok = dal.InsertarVenta(venta, detalles);
             mensaje = ok ? "Venta registrada correctamente." : "Error al registrar la venta.";
             return ok;
         }
@@ -28,37 +33,81 @@ namespace alquilerCanchasBLL
         public List<Venta> ObtenerVentas()
         {
             var lista = new List<Venta>();
-            using (var reader = dal.ListarVenta())
+            var reader = dal.ListarVenta();
+
+            while (reader.Read())
             {
-                while (reader.Read())
+                lista.Add(new Venta
                 {
-                    lista.Add(new Venta
-                    {
-                        IdVenta = (int)reader["IdVenta"],
-                        Fecha = (DateTime)reader["Fecha"],
-                        IdUsuario = (int)reader["IdUsuario"],
-                        Total = (decimal)reader["Total"],
-                    });
-                }
+                    IdVenta = (int)reader["IdVenta"],
+                    Fecha = (DateTime)reader["Fecha"],
+                    IdUsuario = (int)reader["IdUsuario"],
+                    Total = (decimal)reader["Total"]
+                });
             }
+
+            reader.Close();
             return lista;
         }
 
-        public bool ActualizarVenta(Venta v)
+        public bool ActualizarVenta(Venta venta, out string mensaje)
         {
-            return dal.ActualizarVenta(v.IdVenta, v.IdUsuario, v.Fecha) > 0;
+            mensaje = string.Empty;
+
+            if (venta == null || venta.IdVenta <= 0 || venta.IdUsuario <= 0)
+            {
+                mensaje = "Datos de venta inválidos.";
+                return false;
+            }
+
+            return dal.ActualizarVenta(venta.IdVenta, venta.IdUsuario, venta.Fecha) > 0;
         }
 
-        public bool ActualizarDetalle(VentaDetalle detalle)
+        public bool ActualizarDetalle(VentaDetalle detalle, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            if (detalle == null || detalle.IdDetalle <= 0 || detalle.Cantidad <= 0 || detalle.PrecioUnitario < 0)
+            {
+                mensaje = "Datos del detalle inválidos.";
+                return false;
+            }
+
             return dal.ActualizarDetalleVenta(detalle.IdDetalle, detalle.Cantidad, detalle.PrecioUnitario) > 0;
         }
 
-        public bool EliminarVenta(int idVenta)
+        public bool EliminarVenta(int idVenta, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            if (idVenta <= 0)
+            {
+                mensaje = "Id de venta inválido.";
+                return false;
+            }
+
             return dal.Eliminar(idVenta);
         }
 
+        private string ValidarVenta(Venta venta, List<VentaDetalle> detalles)
+        {
+            if (venta == null)
+                return "La venta no puede ser nula.";
+
+            if (venta.IdUsuario <= 0)
+                return "Debe especificar el usuario.";
+
+            if (detalles == null || detalles.Count == 0)
+                return "La venta no tiene productos.";
+
+            foreach (var d in detalles)
+            {
+                if (d.IdProducto <= 0 || d.Cantidad <= 0 || d.PrecioUnitario < 0)
+                    return $"Detalle inválido para el producto ID {d.IdProducto}.";
+            }
+
+            return string.Empty;
+        }
 
     }
 }
