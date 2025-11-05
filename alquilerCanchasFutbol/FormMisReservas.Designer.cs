@@ -39,6 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
+            this.btnExportarXml = new System.Windows.Forms.Button();
+            this.btnImportarXml = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,12 +139,34 @@
             this.lblCliente.TabIndex = 10;
             this.lblCliente.Text = "Nombre";
             // 
+            // btnExportarXml
+            // 
+            this.btnExportarXml.Location = new System.Drawing.Point(608, 219);
+            this.btnExportarXml.Name = "btnExportarXml";
+            this.btnExportarXml.Size = new System.Drawing.Size(93, 23);
+            this.btnExportarXml.TabIndex = 11;
+            this.btnExportarXml.Text = "Exportar XML";
+            this.btnExportarXml.UseVisualStyleBackColor = true;
+            this.btnExportarXml.Click += new System.EventHandler(this.btnExportarXml_Click);
+            // 
+            // btnImportarXml
+            // 
+            this.btnImportarXml.Location = new System.Drawing.Point(608, 258);
+            this.btnImportarXml.Name = "btnImportarXml";
+            this.btnImportarXml.Size = new System.Drawing.Size(93, 23);
+            this.btnImportarXml.TabIndex = 12;
+            this.btnImportarXml.Text = "Importar XML";
+            this.btnImportarXml.UseVisualStyleBackColor = true;
+            this.btnImportarXml.Click += new System.EventHandler(this.btnImportarXml_Click);
+            // 
             // FormMisReservas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 458);
+            this.Controls.Add(this.btnImportarXml);
+            this.Controls.Add(this.btnExportarXml);
             this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -176,5 +200,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Button btnExportarXml;
+        private System.Windows.Forms.Button btnImportarXml;
     }
 }

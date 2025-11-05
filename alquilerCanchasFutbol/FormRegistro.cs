@@ -15,52 +15,52 @@ namespace alquilerCanchasFutbol
 {
     public partial class FormRegistro : Form
     {
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+        private readonly UsuarioBLL usuarioBLL;
         public FormRegistro()
         {
             InitializeComponent();
+
+
+            var usuarioDAL = new UsuarioDAL(conexion); 
+            this.usuarioBLL = new UsuarioBLL(usuarioDAL); 
+
             cmbRol.SelectedItem = "Cliente";
-            cmbRol.Enabled=false;
+            cmbRol.Enabled = false;
             lblDisponibilidad.Text = "";
             lblDisponibilidad.ForeColor = Color.Black;
         }
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            
             Usuario nuevo = new Usuario
             {
                 Nombre = txtNombre.Text,
                 Clave = txtClave.Text,
                 Rol = "Cliente"
             };
-            UsuarioBLL usuarioBLL=new UsuarioBLL();
-            if(!usuarioBLL.NombreUsuarioDisponible(txtNombre.Text))
+
+
+            if (!this.usuarioBLL.NombreUsuarioDisponible(txtNombre.Text))
             {
-                MessageBox.Show("El nombre de usuario ya esta en uso.Elegi otro.");
-                return;
-            }
-            if(string.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                MessageBox.Show("Todos los campos son obligatorios.");
-                return;
-            }
-            if(txtClave.Text.Length<4)
-            {
-                MessageBox.Show("La clave debe tener al menos 4 caracteres.");
+                MessageBox.Show("El nombre de usuario ya esta en uso. Elegi otro.");
                 return;
             }
 
-            bool ok = UsuarioBLL.RegistrarUsuario(nuevo);
-            if(ok)
+
+            string mensaje;
+            bool ok = this.usuarioBLL.RegistrarUsuario(nuevo, out mensaje);
+
+            if (ok)
             {
-                MessageBox.Show("Registro exitoso.Ahora podes iniciar sesion.");
+                MessageBox.Show("Registro exitoso. Ahora podes iniciar sesion.");
                 btnVolverLogin.Visible = true;
             }
             else
             {
-                MessageBox.Show("Error al registrar usuario.");
+                MessageBox.Show(mensaje);
             }
-
         }
 
         private void btnVolverLogin_Click(object sender, EventArgs e)
@@ -77,24 +77,23 @@ namespace alquilerCanchasFutbol
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            UsuarioBLL usuarioBLL = new UsuarioBLL();
             string nombre = txtNombre.Text.Trim();
-            if(string.IsNullOrWhiteSpace(nombre))
+            if (string.IsNullOrWhiteSpace(nombre))
             {
                 lblDisponibilidad.Text = "";
                 return;
             }
-            if(usuarioBLL.NombreUsuarioDisponible(nombre))
+
+            if (this.usuarioBLL.NombreUsuarioDisponible(nombre))
             {
                 lblDisponibilidad.Text = "Nombre Disponible";
-                lblDisponibilidad.ForeColor= Color.Green;
+                lblDisponibilidad.ForeColor = Color.Green;
             }
             else
             {
                 lblDisponibilidad.Text = "Nombre ya en uso";
-                lblDisponibilidad.ForeColor=Color.Red;
+                lblDisponibilidad.ForeColor = Color.Red;
             }
-
         }
     }
 }

@@ -10,120 +10,94 @@ namespace alquilerCanchasDAL
 {
     public class ProductoDAL : IProductoRepository
     {
-        private readonly SqlConnection cone;
-        private readonly SqlTransaction transaccion;
-
-        public ProductoDAL()
+        private readonly ConexionDAL conexion;
+        public ProductoDAL(ConexionDAL conexion)
         {
-            var connDal = new ConexionDAL();
-            this.cone = new SqlConnection(connDal.CadenaConexion);
-            this.cone.Open();
-        }
-        public ProductoDAL(SqlConnection cone, SqlTransaction transaccion)
-        {
-            this.cone = cone;
-            this.transaccion = transaccion;
+            this.conexion = conexion;
         }
 
-
-
+        private Producto MapearProducto(SqlDataReader reader)
+        {
+            return new Producto
+            {
+                IdProducto = (int)reader["IdProducto"],
+                Nombre = reader["Nombre"].ToString(),
+                Precio = (decimal)reader["Precio"],
+                Stock = (int)reader["Stock"],
+                Categoria = reader["Categoria"].ToString()
+            };
+        }
         public List<Producto>Listar()
         {
             var lista = new List<Producto>();
-            var cmd = new SqlCommand("SP_ListarProducto", cone, transaccion)
+            var reader = conexion.EjecutarReader("SP_ListarProducto", null);
+
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            var reader = cmd.ExecuteReader();
-            while(reader.Read())
-            {
-                lista.Add(new Producto
+                while (reader.Read())
                 {
-                    IdProducto = (int)reader["IdProducto"],
-                    Nombre = reader["Nombre"].ToString(),
-                    Precio = (decimal)reader["Precio"],
-                    Stock = (int)reader["Stock"],
-                    Categoria = reader["Categoria"].ToString()
-                });
+                    lista.Add(MapearProducto(reader));
+                }
             }
-            reader.Close();
+            finally
+            {
+                if(reader!=null && !reader.IsClosed)
+                {
+                    reader.Close();
+                }
+            }
             return lista;
         }
         public Producto ObtenerPorId(int idProducto)
         {
-            var cmd = new SqlCommand("SP_ObtenerProductoPorId", cone, transaccion)
+            Producto producto = null;
+            var parametros = new List<SqlParameter> { new SqlParameter("@IdProducto", idProducto) };
+            var reader = conexion.EjecutarReader("SP_ObtenerProductoPorId", parametros);
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdProducto", idProducto);
-            var reader = cmd.ExecuteReader();
-            if(reader.Read() )
-            {
-                var producto = new Producto
+                if(reader.Read())
                 {
-                    IdProducto = (int)reader["IdProducto"],
-                    Nombre = reader["Nombre"].ToString(),
-                    Precio = (decimal)reader["Precio"],
-                    Stock = (int)reader["Stock"],
-                    Categoria = reader["Categoria"].ToString()
-                };
-                reader.Close();
-                return producto;
+                    producto = MapearProducto(reader);
+                }
             }
-            reader.Close();
-            return null;
-        }
-        public bool Insertar(Producto producto)
-        {
-            var cmd = new SqlCommand("SP_InsertarProductos", cone, transaccion)
+            finally
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-            cmd.Parameters.AddWithValue("@Precio", producto.Precio);
-            cmd.Parameters.AddWithValue("@Stock", producto.Stock);
-            cmd.Parameters.AddWithValue("@Categoria", producto.Categoria);
-
-            return cmd.ExecuteNonQuery() > 0;
+                if(reader != null && !reader.IsClosed)
+                {
+                    reader.Close();
+                }
+            }
+            return producto;
         }
+
+        public bool Insertar(Producto producto)
+            => conexion.EjecutarNonQueryTransacciones("SP_InsertarProductos", new List<SqlParameter>
+            {
+                new SqlParameter("@Nombre",producto.Nombre),
+                new SqlParameter("@Precio", producto.Precio),
+                new SqlParameter("@Stock", producto.Stock),
+                new SqlParameter("@Categoria",producto.Categoria)
+            }) > 0;
 
         public bool Actualizar(Producto producto)
-        {
-            var cmd = new SqlCommand("SP_ActualizarProducto", cone, transaccion)
+            => conexion.EjecutarNonQueryTransacciones("SP_ModificarProducto", new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdProducto", producto.IdProducto);
-            cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-            cmd.Parameters.AddWithValue("@Precio", producto.Precio);
-            cmd.Parameters.AddWithValue("@Stock", producto.Stock);
-
-            return cmd.ExecuteNonQuery() > 0;
-        }
-
+                new SqlParameter("@IdProducto", producto.IdProducto),
+                new SqlParameter("@Nombre",producto.Nombre),
+                new SqlParameter("@Precio",producto.Precio),
+                new SqlParameter("@Stock",producto.Stock),
+                new SqlParameter("@Categoria",producto.Categoria)
+            }) > 0;
         public bool Eliminar(int idProducto)
-        {
-            var cmd = new SqlCommand("SP_EliminarProducto", cone, transaccion)
+            => conexion.EjecutarNonQueryTransacciones("SP_EliminarProducto", new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdProducto", idProducto);
-
-            return cmd.ExecuteNonQuery() > 0;
-        }
-
+                new SqlParameter("@IdProducto", idProducto)
+            }) > 0;
         public int ActualizarStock(int idProducto, int cantidadVendida)
-        {
-            var cmd = new SqlCommand("SP_ActualizarStock", cone, transaccion)
+            => conexion.EjecutarNonQueryTransacciones("SP_ActualizarStock", new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdProducto", idProducto);
-            cmd.Parameters.AddWithValue("@Cantidad", cantidadVendida);
-
-            return cmd.ExecuteNonQuery();
-        }
-
-
+                new SqlParameter("@IdProducto",idProducto),
+                new SqlParameter("@Cantidad",cantidadVendida)
+            });
     }
 }

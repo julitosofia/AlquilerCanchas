@@ -9,7 +9,7 @@ namespace alquilerCanchasDAL
 {
     public interface IReservaRepository : IRepository<Reserva>
     {
-        List<Reserva> ObtenerReservasPorUsuario(int idUsuario);
+        List<Reserva> ObtenerReservasPorUsuario(string nombreCliente);
         SqlDataReader VerificarDisponibilidad(int idCancha, DateTime fecha, DateTime inicio, DateTime fin);
         decimal ObtenerTarifaPorCancha(int idCancha);
         SqlDataReader ObtenerReservasPorCanchaYFecha(int idCancha, DateTime fecha);

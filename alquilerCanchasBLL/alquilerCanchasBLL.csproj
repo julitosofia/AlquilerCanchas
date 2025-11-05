@@ -58,6 +58,10 @@
       <Project>{7ed4caeb-fa5b-4e3c-8880-8d3fb5f78e78}</Project>
       <Name>alquilerCanchasDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{ea4cb3f3-5bf7-4501-a86b-70f79153ace8}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

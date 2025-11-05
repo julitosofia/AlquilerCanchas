@@ -29,8 +29,14 @@ namespace alquilerCanchasBE
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Rol requerido");
-                if (value != "ADMIN" && value != "USUARIO") throw new ArgumentException("Rol invalido");
-                rol = value;    
+
+                string upperValue = value.Trim().ToUpperInvariant();
+
+                if (upperValue != "CLIENTE" && upperValue != "EMPLEADO")
+                {
+                    throw new ArgumentException("Rol invalido");
+                }
+                rol = upperValue;
             }
         }
         public string Clave

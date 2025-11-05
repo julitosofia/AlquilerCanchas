@@ -6,16 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using alquilerCanchasBE;
 using alquilerCanchasDAL;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
+using Utils;
 
 namespace alquilerCanchasBLL
 {
     public class UsuarioBLL
     {
         private readonly UsuarioDAL dal;
-
-        public UsuarioBLL()
+        private readonly ConexionDAL conexion = new ConexionDAL();
+        public UsuarioBLL(UsuarioDAL usuarioDal)
         {
-            dal = new UsuarioDAL();
+            this.dal = usuarioDal;
         }
 
         public LoginResultado ValidarLogin(string nombre, string clave)
@@ -89,7 +93,47 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
+        public bool ExportarUsuariosAXml(out string mensaje)
+        {
+
+            var usuarios = dal.Listar();
+
+            if (usuarios == null || usuarios.Count == 0)
+            {
+                mensaje = "No hay usuarios para exportar.";
+                return false;
+            }
+
+            try
+            {
+
+                var xmlManager = new XmlManager<Usuario>("usuarios.xml");
 
 
+                bool exito = xmlManager.Guardar(usuarios);
+
+                if (exito)
+                {
+                    mensaje = "Usuarios exportados a 'usuarios.xml' correctamente.";
+                    return true;
+                }
+                else
+                {
+                    mensaje = "Error desconocido al intentar guardar el archivo XML de usuarios.";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                mensaje = $"Error de sistema al exportar los usuarios: {ex.Message}";
+                return false;
+            }
+        }
+        public List<Usuario> ImportarUsuariosDesdeXml()
+        {
+            var xmlManager = new XmlManager<Usuario>("usuarios.xml");
+            return xmlManager.Cargar();
+        }
     }
 }

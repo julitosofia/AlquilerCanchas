@@ -10,180 +10,135 @@ namespace alquilerCanchasDAL
 {
     public class ReservaDAL : IReservaRepository
     {
-        private readonly SqlConnection conexion;
-        private readonly SqlTransaction transaccion;
-
-        public ReservaDAL(SqlConnection conexion, SqlTransaction transaccion)
+        private readonly ConexionDAL conexion;
+        public ReservaDAL(ConexionDAL conexion)
         {
             this.conexion = conexion;
-            this.transaccion = transaccion;
         }
 
-        public ReservaDAL()
+        private Reserva MapearReservaBase(SqlDataReader reader)
         {
-            var connDal = new ConexionDAL();
-            this.conexion = new SqlConnection(connDal.CadenaConexion);
-            this.conexion.Open();
+            return new Reserva
+            {
+                IdReserva = (int)reader["IdReserva"],
+                IdCancha = (int)reader["IdCancha"],
+                IdUsuario = (int)reader["IdUsuario"],
+                Cliente = reader["Cliente"].ToString(),
+                Fecha = (DateTime)reader["Fecha"],
+                HoraInicio = (DateTime)reader["HoraInicio"],
+                HoraFin = (DateTime)reader["HoraFin"],
+                Total = (decimal)reader["Total"],
+                Estado = reader["Estado"].ToString()
+            };
         }
 
-        public List<Reserva> Listar()
+        private Reserva MapearReservaDetallada(SqlDataReader dr)
+        {
+            var reserva = MapearReservaBase(dr);
+            reserva.NombreCliente = dr["NombreCliente"].ToString();
+            reserva.NombreCancha = dr["NombreCancha"].ToString();
+            return reserva;
+        }
+
+        public List<Reserva>Listar()
         {
             var lista = new List<Reserva>();
-            var cmd = new SqlCommand("SP_ListarReserva", conexion, transaccion)
+            var reader = conexion.EjecutarReader("SP_ListarReserva", null);
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
-
-            var reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                lista.Add(new Reserva
+                while(reader.Read())
                 {
-                    IdReserva = (int)reader["IdReserva"],
-                    IdCancha = (int)reader["IdCancha"],
-                    IdUsuario = (int)reader["IdUsuario"],
-                    Cliente = reader["Cliente"].ToString(),
-                    Fecha = (DateTime)reader["Fecha"],
-                    HoraInicio = (DateTime)reader["HoraInicio"],
-                    HoraFin = (DateTime)reader["HoraFin"],
-                    Total = (decimal)reader["Total"],
-                    Estado = reader["Estado"].ToString()
-                });
+                    lista.Add(MapearReservaDetallada(reader));
+                }
             }
-
-            reader.Close();
+            finally
+            {
+                if (reader != null && !reader.IsClosed) reader.Close(); 
+            }
             return lista;
         }
-
-        public int ActualizarReserva(int idReserva, DateTime fecha, DateTime horaInicio, DateTime horaFin, decimal total, string estado)
+        public List<Reserva>ObtenerReservasPorUsuario(string nombreCliente)
         {
-            var cmd = new SqlCommand("SP_ActualizarReserva", conexion, transaccion)
+            var lista = new List<Reserva>();
+            var parametros = new List<SqlParameter> { new SqlParameter("@NombreCliente", nombreCliente) };
+            var dr = conexion.EjecutarReader("SP_ObtenerReservasPorUsuario", parametros);
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdReserva", idReserva);
-            cmd.Parameters.AddWithValue("@Fecha", fecha);
-            cmd.Parameters.AddWithValue("@HoraInicio", horaInicio);
-            cmd.Parameters.AddWithValue("@HoraFin", horaFin);
-            cmd.Parameters.AddWithValue("@Total", total);
-            cmd.Parameters.AddWithValue("@Estado", estado);
-
-            return cmd.ExecuteNonQuery();
-        }
-
-        public int CancelarReserva(int idReserva)
-        {
-            var cmd = new SqlCommand("SP_CancelarReserva", conexion, transaccion)
+                while(dr.Read())
+                {
+                    lista.Add(MapearReservaBase(dr));
+                }
+            }
+            finally
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdReserva", idReserva);
-
-            return cmd.ExecuteNonQuery();
+                if (dr != null && !dr.IsClosed) dr.Close();
+            }
+            return lista;
         }
-
         public SqlDataReader VerificarDisponibilidad(int idCancha, DateTime fecha, DateTime horaInicio, DateTime horaFin)
+        => conexion.EjecutarReader("SP_VerificarDisponibilidadReserva", new List<SqlParameter>
         {
-            var cmd = new SqlCommand("SP_VerificarDisponibilidadReserva", conexion, transaccion)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdCancha", idCancha);
-            cmd.Parameters.AddWithValue("@Fecha", fecha);
-            cmd.Parameters.AddWithValue("@HoraInicio", horaInicio);
-            cmd.Parameters.AddWithValue("@HoraFin", horaFin);
-
-            return cmd.ExecuteReader();
-        }
+            new SqlParameter("@IdCancha", idCancha),
+            new SqlParameter("@Fecha", fecha),
+            new SqlParameter("@HoraInicio", horaInicio),
+            new SqlParameter("@HoraFin", horaFin)
+        });
 
         public SqlDataReader ObtenerReservasPorCanchaYFecha(int idCancha, DateTime fecha)
-        {
-            var cmd = new SqlCommand("SP_ObtenerReservasPorCanchaYFecha", conexion, transaccion)
+            => conexion.EjecutarReader("SP_ObtenerReservasPorCanchaYFecha", new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdCancha", idCancha);
-            cmd.Parameters.AddWithValue("@Fecha", fecha);
-
-            return cmd.ExecuteReader();
-        }
-
-        public bool Insertar(Reserva r)
-        {
-            var cmd = new SqlCommand("SP_InsertaarReservas", conexion, transaccion)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdCancha", r.IdCancha);
-            cmd.Parameters.AddWithValue("@IdUsuario", r.IdUsuario);
-            cmd.Parameters.AddWithValue("@Cliente", r.Cliente);
-            cmd.Parameters.AddWithValue("@Fecha", r.Fecha);
-            cmd.Parameters.AddWithValue("@Horainicio", r.HoraInicio);
-            cmd.Parameters.AddWithValue("@HoraFin", r.HoraFin);
-            cmd.Parameters.AddWithValue("@Total", r.Total);
-            cmd.Parameters.AddWithValue("@Estado", r.Estado);
-
-            return cmd.ExecuteNonQuery() > 0;
-        }
-
+            new SqlParameter("@IdCancha", idCancha),
+            new SqlParameter("@Fecha", fecha)
+            });
         public decimal ObtenerTarifaPorCancha(int idCancha)
         {
-            var cmd = new SqlCommand("SP_ObtenerTarifaPorCancha", conexion, transaccion)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdCancha", idCancha);
-
-            object result = cmd.ExecuteScalar();
+            object result = conexion.EjecutarEscalarTransaccion("SP_ObtenerTarifaPorCancha", new List<SqlParameter>
+        {
+            new SqlParameter("@IdCancha", idCancha)
+        });
             return result != null ? Convert.ToDecimal(result) : 0m;
         }
+        public bool Actualizar(Reserva r)
+        => ActualizarReserva(r.IdReserva, r.Fecha, r.HoraInicio, r.HoraFin, r.Total, r.Estado) > 0;
 
-        public List<Reserva> ObtenerReservasPorUsuario(int idUsuario)
+        public int ActualizarReserva(int idReserva, DateTime fecha, DateTime horaInicio, DateTime horaFin, decimal total, string estado)
+        => conexion.EjecutarNonQueryTransacciones("SP_ActualizarReserva", new List<SqlParameter>
         {
-            var lista = new List<Reserva>();
-            var cmd = new SqlCommand("SP_ObtenerReservasPorUsuarios", conexion, transaccion)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+            new SqlParameter("@IdReserva", idReserva),
+            new SqlParameter("@Fecha", fecha),
+            new SqlParameter("@HoraInicio", horaInicio),
+            new SqlParameter("@HoraFin", horaFin),
+            new SqlParameter("@Total", total),
+            new SqlParameter("@Estado", estado)
+        });
+        public int CancelarReserva(int idReserva)
+        => conexion.EjecutarNonQueryTransacciones("SP_CancelarReserva", new List<SqlParameter>
+        {
+            new SqlParameter("@IdReserva", idReserva)
+        });
 
-            var dr = cmd.ExecuteReader();
-            while (dr.Read())
+        public bool Insertar(Reserva r)
+            => conexion.EjecutarNonQueryTransacciones("SP_InsertaarReservas", new List<SqlParameter>
             {
-                lista.Add(new Reserva
-                {
-                    IdReserva = (int)dr["IdReserva"],
-                    IdCancha = (int)dr["IdCancha"],
-                    IdUsuario = (int)dr["IdUsuario"],
-                    NombreCliente = dr["NombreCliente"].ToString(),
-                    Fecha = (DateTime)dr["Fecha"],
-                    HoraInicio = (DateTime)dr["HoraInicio"],
-                    HoraFin = (DateTime)dr["HoraFin"],
-                    Total = (decimal)dr["Total"],
-                    NombreCancha = dr["NombreCancha"].ToString(),
-                    Estado = dr["Estado"].ToString()
-                });
-            }
+            new SqlParameter("@IdCancha", r.IdCancha),
+            new SqlParameter("@IdUsuario", r.IdUsuario),
+            new SqlParameter("@Cliente", r.Cliente),
+            new SqlParameter("@Fecha", r.Fecha),
+            new SqlParameter("@Horainicio", r.HoraInicio),
+            new SqlParameter("@HoraFin", r.HoraFin),
+            new SqlParameter("@Total", r.Total),
+            new SqlParameter("@Estado", r.Estado)
+            }) > 0;
 
-            dr.Close();
-            return lista;
-        }
 
         public Reserva ObtenerPorId(int id)
         {
             throw new NotImplementedException("Este método no está implementado porque no se requiere actualmente.");
         }
 
-        public bool Actualizar(Reserva r)
-        {
-            return ActualizarReserva(r.IdReserva, r.Fecha, r.HoraInicio, r.HoraFin, r.Total, r.Estado) > 0;
-        }
-
         public bool Eliminar(int id)
         {
             throw new NotImplementedException("Este método no está implementado porque no se requiere actualmente.");
         }
-
-
     }
 }

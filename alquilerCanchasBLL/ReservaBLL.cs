@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using alquilerCanchasBE;
 using alquilerCanchasDAL;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
+using Utils;
 
 namespace alquilerCanchasBLL
 {
@@ -21,9 +25,9 @@ namespace alquilerCanchasBLL
             return reservaRepo.Listar();
         }
 
-        public List<Reserva> ObtenerReservasPorUsuario(int idUsuario)
+        public List<Reserva> ObtenerReservasPorUsuario(string nombreCliente)
         {
-            return reservaRepo.ObtenerReservasPorUsuario(idUsuario);
+            return reservaRepo.ObtenerReservasPorUsuario(nombreCliente);
         }
 
         public bool TurnoDisponible(int idCancha, DateTime fecha, DateTime inicio, DateTime fin)
@@ -48,9 +52,9 @@ namespace alquilerCanchasBLL
             return !lista.Any(r => (inicio < r.HoraFin) && (fin > r.HoraInicio));
         }
 
-        public bool YaTieneReserva(int idUsuario, DateTime fecha, DateTime inicio, DateTime fin)
+        public bool YaTieneReserva(string nombreCliente, DateTime fecha, DateTime inicio, DateTime fin)
         {
-            var reservas = reservaRepo.ObtenerReservasPorUsuario(idUsuario)
+            var reservas = reservaRepo.ObtenerReservasPorUsuario(nombreCliente)
                                       .Where(r => r.Estado == "ACTIVA" && r.Fecha.Date == fecha.Date)
                                       .ToList();
 
@@ -80,7 +84,7 @@ namespace alquilerCanchasBLL
                 return false;
             }
 
-            if (YaTieneReserva(r.IdUsuario, r.Fecha, r.HoraInicio, r.HoraFin))
+            if (YaTieneReserva(r.Cliente, r.Fecha, r.HoraInicio, r.HoraFin))
             {
                 mensaje = "Ya tenés una reserva en ese horario.";
                 return false;
@@ -150,6 +154,39 @@ namespace alquilerCanchasBLL
             return string.Empty;
         }
 
-
+        public bool ExportarReservasAXml(out string mensaje)
+        {
+            var reservas = reservaRepo.Listar();
+            if(reservas == null || reservas.Count == 0)
+            {
+                mensaje = "No hay reservas para exportar";
+                return false;
+            }
+            try
+            {
+                var xmlManager = new XmlManager<Reserva>("reservas.xml");
+                bool exito = xmlManager.Guardar(reservas);
+                if(exito)
+                {
+                    mensaje = "Reservas exportadas a 'reservas.xml' correctamente.";
+                    return true;
+                }
+                else
+                {
+                    mensaje = "Error desconocido al intentar guardar el archivo XML de reservas.";
+                    return false;
+                }
+            }
+            catch(Exception ep)
+            {
+                mensaje = $"Error de sistema al exportar las reservas: {ep.Message}";
+                return false;
+            }
+        }
+        public List<Reserva> ImportarReservasDesdeXml()
+        {
+            var xmlManager = new XmlManager<Reserva>("reservas.xml");
+            return xmlManager.Cargar();
+        }
     }
 }

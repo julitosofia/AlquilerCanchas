@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using alquilerCanchasDAL;
 using alquilerCanchasBE;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
+using Utils;
 
 namespace alquilerCanchasBLL
 {
@@ -129,7 +133,48 @@ namespace alquilerCanchasBLL
 
             return true;
         }
+        public bool ExportarComprasAXml(out string mensaje)
+        {
+
+            var compras = ObtenerTodas();
+
+            if (compras == null || compras.Count == 0)
+            {
+                mensaje = "No hay compras para exportar.";
+                return false;
+            }
+
+            try
+            {
+
+                var xmlManager = new XmlManager<Compra>("compras.xml");
 
 
+                bool exito = xmlManager.Guardar(compras);
+
+                if (exito)
+                {
+                    mensaje = "Compras exportadas a 'compras.xml' correctamente.";
+                    return true;
+                }
+                else
+                {
+
+                    mensaje = "Error desconocido al intentar guardar el archivo XML de compras.";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                mensaje = $"Error de sistema al exportar las compras: {ex.Message}";
+                return false;
+            }
+        }
+        public List<Compra> ImportarComprasDesdeXml()
+        {
+            var xmlManager = new XmlManager<Compra>("compras.xml");
+            return xmlManager.Cargar();
+        }
     }
 }

@@ -38,12 +38,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lbl11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dtpHoraInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
+            this.btnExportarXml = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -152,6 +153,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva";
             // 
+            // dtpHoraFin
+            // 
+            this.dtpHoraFin.Location = new System.Drawing.Point(84, 165);
+            this.dtpHoraFin.Name = "dtpHoraFin";
+            this.dtpHoraFin.Size = new System.Drawing.Size(200, 20);
+            this.dtpHoraFin.TabIndex = 16;
+            // 
+            // dtpHoraInicio
+            // 
+            this.dtpHoraInicio.Location = new System.Drawing.Point(84, 128);
+            this.dtpHoraInicio.Name = "dtpHoraInicio";
+            this.dtpHoraInicio.Size = new System.Drawing.Size(200, 20);
+            this.dtpHoraInicio.TabIndex = 15;
+            // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
@@ -188,19 +203,15 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Disponibilidad:";
             // 
-            // dtpHoraInicio
+            // btnExportarXml
             // 
-            this.dtpHoraInicio.Location = new System.Drawing.Point(84, 128);
-            this.dtpHoraInicio.Name = "dtpHoraInicio";
-            this.dtpHoraInicio.Size = new System.Drawing.Size(200, 20);
-            this.dtpHoraInicio.TabIndex = 15;
-            // 
-            // dtpHoraFin
-            // 
-            this.dtpHoraFin.Location = new System.Drawing.Point(84, 165);
-            this.dtpHoraFin.Name = "dtpHoraFin";
-            this.dtpHoraFin.Size = new System.Drawing.Size(200, 20);
-            this.dtpHoraFin.TabIndex = 16;
+            this.btnExportarXml.Location = new System.Drawing.Point(713, 361);
+            this.btnExportarXml.Name = "btnExportarXml";
+            this.btnExportarXml.Size = new System.Drawing.Size(75, 23);
+            this.btnExportarXml.TabIndex = 11;
+            this.btnExportarXml.Text = "XML";
+            this.btnExportarXml.UseVisualStyleBackColor = true;
+            this.btnExportarXml.Click += new System.EventHandler(this.btnExportarXml_Click);
             // 
             // FormReserva
             // 
@@ -208,6 +219,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 396);
+            this.Controls.Add(this.btnExportarXml);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormReserva";
             this.Text = "FormReserva";
@@ -236,5 +248,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpHoraFin;
         private System.Windows.Forms.DateTimePicker dtpHoraInicio;
+        private System.Windows.Forms.Button btnExportarXml;
     }
 }

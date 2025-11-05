@@ -18,10 +18,23 @@ namespace alquilerCanchasFutbol
     public partial class FormProductos : Form
     {
         private Usuario usuario;
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+
+        private readonly ProductoBLL productoBLL;
         public FormProductos(Usuario usuario)
         {
             InitializeComponent();
             this.usuario = usuario;
+
+
+            var productoDAL = new ProductoDAL(conexion);
+
+
+            this.productoBLL = new ProductoBLL(productoDAL);
+
+
+            CargarInventario();
         }
 
         private void FormProductos_Load(object sender, EventArgs e)
@@ -31,22 +44,27 @@ namespace alquilerCanchasFutbol
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtCategoria.Text) || !decimal.TryParse(txtPrecio.Text.Trim(), out decimal precio))
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtCategoria.Text) || !decimal.TryParse(txtPrecio.Text.Trim(), out decimal precio))
             {
                 MessageBox.Show("Todos los campos son obligatorios y deben tener formato valido.");
                 return;
-
             }
-                Producto producto = new Producto
+
+            Producto producto = new Producto
             {
                 Nombre = txtNombre.Text.Trim(),
                 Precio = decimal.Parse(txtPrecio.Text.Trim()),
                 Stock = (int)nudCantidad.Value,
                 Categoria = txtCategoria.Text.Trim(),
             };
-            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
-            bool ok = productoBLL.AgregarProducto(producto);
-            MessageBox.Show(ok ? "Producto agregado correctamente." : "Error al agregar producto.");
+
+
+            string mensaje;
+            bool ok = this.productoBLL.AgregarProducto(producto, out mensaje);
+
+
+            MessageBox.Show(mensaje, ok ? "Éxito" : "Error");
+
             if (ok) CargarInventario();
         }
 
@@ -56,33 +74,89 @@ namespace alquilerCanchasFutbol
             if (dgvInventario.CurrentRow == null) return;
             Producto producto = (Producto)dgvInventario.CurrentRow.DataBoundItem;
 
-            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
-            bool ok = productoBLL.EliminarProducto(producto.IdProducto);
-            MessageBox.Show(ok ? "Producto eliminado correctamente." : "Error al elminar producto.");
+
+            string mensaje;
+            bool ok = this.productoBLL.EliminarProducto(producto.IdProducto, out mensaje);
+
+
+            MessageBox.Show(mensaje, ok ? "Éxito" : "Error");
+
             if (ok) CargarInventario();
         }
 
         private void CargarInventario()
         {
-            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
             dgvInventario.DataSource = null;
-            dgvInventario.DataSource = productoBLL.ObtenerTodos();
+            dgvInventario.DataSource = this.productoBLL.ObtenerTodos();
         }
 
         private void btnModificarProducto_Click(object sender, EventArgs e)
         {
             if (dgvInventario.CurrentRow == null) return;
+
+
             Producto producto = (Producto)dgvInventario.CurrentRow.DataBoundItem;
+
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtCategoria.Text) || !decimal.TryParse(txtPrecio.Text.Trim(), out decimal precio))
+            {
+                MessageBox.Show("Todos los campos son obligatorios y deben tener formato válido para modificar.");
+                return;
+            }
+
 
             producto.Nombre = txtNombre.Text.Trim();
             producto.Precio = decimal.Parse(txtPrecio.Text.Trim());
             producto.Stock = (int)nudCantidad.Value;
             producto.Categoria = txtCategoria.Text.Trim();
 
-            ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
-            bool ok = productoBLL.ModificarProducto(producto);
-            MessageBox.Show(ok ? "Producto modificado correctamente." : "Error al modificar el producto.");
-            if(ok) CargarInventario();
+            string mensaje;
+            bool ok = this.productoBLL.ModificarProducto(producto, out mensaje);
+
+            MessageBox.Show(mensaje, ok ? "Éxito" : "Error");
+
+            if (ok) CargarInventario();
+        }
+
+        private void btnExportarXml_Click(object sender, EventArgs e)
+        {
+            string mensaje;
+            bool exito = this.productoBLL.ExportarTodosAXml(out mensaje);
+            if(exito)
+            {
+                MessageBox.Show(mensaje, "Exportacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error de Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnImportarXml_Click(object sender, EventArgs e)
+        {
+            var productosDesdeXml = this.productoBLL.ImportarTodosDesdeXml();
+
+            if (productosDesdeXml != null && productosDesdeXml.Count > 0)
+            {
+                dgvInventario.DataSource = null;
+                dgvInventario.DataSource = productosDesdeXml;
+
+                MessageBox.Show(
+                    $"Se han cargado {productosDesdeXml.Count} productos desde 'productos.xml' para visualización.",
+                    "Importación Exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    "El archivo 'productos.xml' no existe o está vacío/corrupto. No se pudo importar.",
+                    "Error/Advertencia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
         }
     }
 }

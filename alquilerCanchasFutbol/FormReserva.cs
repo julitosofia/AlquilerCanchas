@@ -16,10 +16,24 @@ namespace alquilerCanchasFutbol
     public partial class FormReserva : Form
     {
         private Usuario usuario;
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+
+        private readonly ReservaBLL reservaBLL;
+        private readonly CanchaBLL canchaBLL; 
         public FormReserva(Usuario usuario)
         {
             InitializeComponent();
             this.usuario = usuario;
+
+
+            var reservaDAL = new ReservaDAL(conexion); 
+                                                       
+            var canchaDAL = new CanchaDAL(conexion); 
+
+
+            this.reservaBLL = new ReservaBLL(reservaDAL);
+            this.canchaBLL = new CanchaBLL(canchaDAL); 
         }
 
         private void btnVerDisponibilidad_Click(object sender, EventArgs e)
@@ -29,29 +43,31 @@ namespace alquilerCanchasFutbol
             DateTime inicio = dtpHoraInicio.Value;
             DateTime fin = dtpHoraFin.Value;
 
-            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
-            bool disponible = reservaBLL.TurnoDisponible(idCancha, fecha, inicio, fin);
 
-            lblEstado.Text=disponible ? "Disponible" : "Ocupado";
-            lblEstado.ForeColor=disponible?Color.Green : Color.Red;
+            bool disponible = this.reservaBLL.TurnoDisponible(idCancha, fecha, inicio, fin);
 
-            if(disponible)
+            lblEstado.Text = disponible ? "Disponible" : "Ocupado";
+            lblEstado.ForeColor = disponible ? Color.Green : Color.Red;
+
+            if (disponible)
             {
-                decimal precio = reservaBLL.CalcularPrecio(idCancha, inicio, fin);
+
+                decimal precio = this.reservaBLL.CalcularPrecio(idCancha, inicio, fin);
                 lblTotal.Text = $"Total: ${precio}";
             }
         }
 
         private void btnReservar_Click(object sender, EventArgs e)
         {
-            if(lblEstado.Text!="Disponible")
+            if (lblEstado.Text != "Disponible")
             {
                 MessageBox.Show("El turno no esta disponible.");
                 return;
             }
             Reserva nueva = new Reserva
             {
-                IdUsuario=usuario.IdUsuario,
+                // ... (resto de la inicialización de la Reserva) ...
+                IdUsuario = usuario.IdUsuario,
                 IdCancha = (int)cmbCancha.SelectedValue,
                 Cliente = usuario.Nombre,
                 Fecha = dtpFecha.Value.Date,
@@ -59,21 +75,24 @@ namespace alquilerCanchasFutbol
                 HoraFin = dtpHoraFin.Value,
                 Total = decimal.Parse(lblTotal.Text.Replace("Total: $", ""))
             };
-            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
-            bool ok = reservaBLL.RegistrarReserva(nueva);
+
+            // Antes: ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
+            // Ahora: Usamos el campo de la clase.
+            bool ok = this.reservaBLL.RegistrarReserva(nueva);
 
             MessageBox.Show(ok ? "Reserva confirmada." : "Error al registrar la reserva.");
-            if(ok) this.Close();
+            if (ok) this.Close();
         }
 
         private void FormReserva_Load(object sender, EventArgs e)
         {
-            CanchaBLL canchaBLL = new CanchaBLL();
-            var canchas = canchaBLL.ObtenerTodas();
+            var canchas = this.canchaBLL.ObtenerTodas();
 
             cmbCancha.DataSource = canchas;
             cmbCancha.DisplayMember = "Nombre";
             cmbCancha.ValueMember = "IdCancha";
+
+            // ... (resto de la configuración del DateTimePicker) ...
             dtpHoraInicio.Format = DateTimePickerFormat.Time;
             dtpHoraInicio.ShowUpDown = true;
 
@@ -86,6 +105,20 @@ namespace alquilerCanchasFutbol
             FormCliente menu = new FormCliente(usuario);
             menu.Show();
             this.Close();
+        }
+
+        private void btnExportarXml_Click(object sender, EventArgs e)
+        {
+            string mensaje;
+            bool exito = this.reservaBLL.ExportarReservasAXml(out mensaje);
+            if (exito)
+            {
+                MessageBox.Show(mensaje, "Exportacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error de Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

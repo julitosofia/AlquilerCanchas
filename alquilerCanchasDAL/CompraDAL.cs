@@ -11,66 +11,49 @@ namespace alquilerCanchasDAL
 {
     public class CompraDAL : ICompraRepository
     {
-        private readonly SqlConnection conexion;
-        private readonly SqlTransaction transaccion;
+        private readonly ConexionDAL conexion;
 
-        public CompraDAL(SqlConnection conexion, SqlTransaction transaccion)
+        public CompraDAL(ConexionDAL conexion)
         {
             this.conexion = conexion;
-            this.transaccion = transaccion;
         }
-        public CompraDAL()
-        {
-            var connDal = new ConexionDAL();
-            this.conexion = connDal.Abrir();
-        }
-
         public SqlDataReader ObtenerTodasLasCompras()
-        {
-            var cmd = new SqlCommand("SP_ObtenerTodasLasCompras", conexion, transaccion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            return cmd.ExecuteReader();
-        }
+            => conexion.EjecutarReader("SP_ObtenerTodasLasCompras", null);
         public SqlDataReader ObtenerDetallesPorCompra(int idCompra)
-        {
-            var cmd = new SqlCommand("SP_ObtenerDetallesPorCompra", conexion, transaccion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@IdCompra", idCompra);
-            return cmd.ExecuteReader();
-        }
+            => conexion.EjecutarReader("SP_ObtenerDetallesPorCompra",
+                new List<SqlParameter> { new SqlParameter("@IdCompra", idCompra) });
         public SqlDataReader ListarCompra()
-        {
-            var cmd = new SqlCommand("SP_ListarCompra", conexion, transaccion);
-            cmd.CommandType = CommandType.StoredProcedure;
-            return cmd.ExecuteReader();
-        }
+            => conexion.EjecutarReader("SP_ListarCompra", null);
+
         public bool RegistrarCompra(Compra compra)
         {
-            int idCompra;
-
-            var cmdCompra = new SqlCommand("RegistrarCompra", conexion, transaccion);
-            cmdCompra.CommandType = CommandType.StoredProcedure;
-            cmdCompra.Parameters.AddWithValue("@Cliente", compra.Cliente);
-            cmdCompra.Parameters.AddWithValue("@Fecha", compra.Fecha);
-            idCompra = Convert.ToInt32(cmdCompra.ExecuteScalar());
-
-            foreach( var detalle in compra.Detalles)
+            var parametrosCompra = new List<SqlParameter>
             {
-                var cmdDetalle = new SqlCommand("RegistrarDetalleCompra", conexion, transaccion);
-                cmdDetalle.CommandType = CommandType.StoredProcedure;
-                cmdDetalle.Parameters.AddWithValue("@IdCompra", idCompra);
-                cmdDetalle.Parameters.AddWithValue("@NombreProducto", detalle.NombreProducto);
-                cmdDetalle.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
-                cmdDetalle.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
-                cmdDetalle.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
-                cmdDetalle.Parameters.AddWithValue("@Categoria", detalle.Categoria);
-                cmdDetalle.ExecuteNonQuery();
+                new SqlParameter("@Cliente", compra.Cliente),
+                new SqlParameter("@Fecha", compra.Fecha)
+            };
+            object resultadoEscalar = conexion.EjecutarEscalarTransaccion("RegistrarCompra", parametrosCompra);
+            int idCompra = Convert.ToInt32(resultadoEscalar);
 
-                var cmdStock = new SqlCommand("SP_ActualizarStock", conexion, transaccion);
-                cmdStock.CommandType = CommandType.StoredProcedure;
-                cmdStock.Parameters.AddWithValue("@IdProducto", detalle.IdProducto);
-                cmdStock.Parameters.AddWithValue("@Cantidad",detalle.Cantidad);
-                cmdStock.ExecuteNonQuery();
+            foreach(var detalle in compra.Detalles)
+            {
+                var parametrosDetalle = new List<SqlParameter>
+                {
+                    new SqlParameter("@IdCompra", idCompra),
+                    new SqlParameter("@NombreProducto",detalle.NombreProducto),
+                    new SqlParameter("@IdProducto",detalle.IdProducto),
+                    new SqlParameter("@Cantidad",detalle.Cantidad),
+                    new SqlParameter("@PrecioUnitario",detalle.PrecioUnitario),
+                    new SqlParameter("@Categoria",detalle.Categoria)
+                };
+                conexion.EjecutarNonQueryTransacciones("RegistrarDetalleCompra", parametrosDetalle);
+
+                var parametrosStock = new List<SqlParameter>
+                {
+                    new SqlParameter("@IdProducto", detalle.IdProducto),
+                    new SqlParameter("@Cantidad",detalle.Cantidad)
+                };
+                conexion.EjecutarNonQueryTransacciones("SP_ActualizarStock", parametrosStock);
             }
             return true;
         }

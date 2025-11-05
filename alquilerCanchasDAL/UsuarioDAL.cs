@@ -10,7 +10,30 @@ namespace alquilerCanchasDAL
 {
     public class UsuarioDAL
     {
-        private readonly ConexionDAL conexion = new ConexionDAL();
+        private readonly ConexionDAL conexion;
+
+        public UsuarioDAL(ConexionDAL conexion)
+        {
+            this.conexion = conexion;
+        }
+
+        private Usuario MapearUsuario(SqlDataReader reader, bool incluirClave = true)
+        {
+            var usuario = new Usuario
+            {
+                IdUsuario = (int)reader["IdUsuario"],
+                Nombre = reader["Nombre"].ToString(),
+                Rol = reader["Rol"].ToString()
+            };
+
+            if (incluirClave && reader["Clave"] != DBNull.Value)
+            {
+                usuario.Clave = reader["Clave"].ToString();
+            }
+
+            return usuario;
+        }
+
 
         public bool Login(string nombre, string clave)
         {
@@ -23,10 +46,15 @@ namespace alquilerCanchasDAL
             var reader = conexion.EjecutarReader("SP_Login", parametros);
             bool resultado = false;
 
-            if (reader.Read())
-                resultado = Convert.ToInt32(reader["Autenticado"]) == 1;
-
-            reader.Close();
+            try
+            {
+                if (reader.Read())
+                    resultado = Convert.ToInt32(reader["Autenticado"]) == 1;
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed) reader.Close();
+            }
             return resultado;
         }
 
@@ -41,18 +69,17 @@ namespace alquilerCanchasDAL
             var reader = conexion.EjecutarReader("SP_ObtenerPorCredencialesPlano", parametros);
             Usuario usuario = null;
 
-            if (reader.Read())
+            try
             {
-                usuario = new Usuario
+                if (reader.Read())
                 {
-                    IdUsuario = (int)reader["IdUsuario"],
-                    Nombre = reader["Nombre"].ToString(),
-                    Clave = reader["Clave"].ToString(),
-                    Rol = reader["Rol"].ToString()
-                };
+                    usuario = MapearUsuario(reader, incluirClave: true);
+                }
             }
-
-            reader.Close();
+            finally
+            {
+                if (reader != null && !reader.IsClosed) reader.Close();
+            }
             return usuario;
         }
 
@@ -66,10 +93,15 @@ namespace alquilerCanchasDAL
             var reader = conexion.EjecutarReader("SP_ExisteNombreUsuario", parametros);
             bool existe = false;
 
-            if (reader.Read())
-                existe = Convert.ToInt32(reader["Existe"]) == 1;
-
-            reader.Close();
+            try
+            {
+                if (reader.Read())
+                    existe = Convert.ToInt32(reader["Existe"]) == 1;
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed) reader.Close();
+            }
             return existe;
         }
 
@@ -78,32 +110,27 @@ namespace alquilerCanchasDAL
             var lista = new List<Usuario>();
             var reader = conexion.EjecutarReader("SP_ListarUsuarios", null);
 
-            while (reader.Read())
+            try
             {
-                lista.Add(new Usuario
+                while (reader.Read())
                 {
-                    IdUsuario = (int)reader["IdUsuario"],
-                    Nombre = reader["Nombre"].ToString(),
-                    Rol = reader["Rol"].ToString()
-                });
+                    lista.Add(MapearUsuario(reader, incluirClave: false));
+                }
             }
-
-            reader.Close();
+            finally
+            {
+                if (reader != null && !reader.IsClosed) reader.Close();
+            }
             return lista;
         }
 
+
         public bool RegistrarUsuario(Usuario usuario)
-        {
-            var parametros = new List<SqlParameter>
-        {
+            => conexion.EjecutarNonQuery("SP_InsertarUsuario", new List<SqlParameter>
+            {
             new SqlParameter("@Nombre", usuario.Nombre),
             new SqlParameter("@Clave", usuario.Clave),
             new SqlParameter("@Rol", usuario.Rol)
-        };
-
-            return conexion.EjecutarNonQuery("SP_InsertarUsuario", parametros) > 0;
-        }
-
-
+            }) > 0;
     }
 }

@@ -1,0 +1,6 @@
+D:\ejercicios\alquilerCanchasFutbol\Utils\bin\Debug\Utils.dll
+D:\ejercicios\alquilerCanchasFutbol\Utils\bin\Debug\Utils.pdb
+D:\ejercicios\alquilerCanchasFutbol\Utils\obj\Debug\Utils.csproj.AssemblyReference.cache
+D:\ejercicios\alquilerCanchasFutbol\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
+D:\ejercicios\alquilerCanchasFutbol\Utils\obj\Debug\Utils.dll
+D:\ejercicios\alquilerCanchasFutbol\Utils\obj\Debug\Utils.pdb

@@ -15,23 +15,31 @@ namespace alquilerCanchasFutbol
 {
     public partial class FormEstadisticas : Form
     {
-        
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+        private readonly CompraBLL compraBLL;
+        private readonly ProductoBLL productoBLL;
         public FormEstadisticas()
         {
             InitializeComponent();
+
+            var compraDAL = new CompraDAL(conexion);
+            var productoDAL = new ProductoDAL(conexion);
+
+            this.compraBLL = new CompraBLL(compraDAL, productoDAL);
+            this.productoBLL = new ProductoBLL(productoDAL);
+
             CargarCompras();
         }
         private void CargarCompras()
         {
-            CompraBLL compraBLL = new CompraBLL(new CompraDAL(), new ProductoDAL());
-            var compras = compraBLL.ObtenerTodas();
+            var compras = this.compraBLL.ObtenerTodas();
             dgvCompras.DataSource = compras;
             MostrarTotal(compras);
         }
         private void CargarCategorias()
         {
-            var productoBLL = new ProductoBLL(new ProductoDAL());
-            var categorias = productoBLL.ObtenerTodos();
+            var categorias = this.productoBLL.ObtenerTodos();
             cmbCategoria.DataSource = categorias;
             cmbCategoria.DisplayMember = "Nombre";
             cmbCategoria.ValueMember = "Categoria";
@@ -47,9 +55,9 @@ namespace alquilerCanchasFutbol
             string categoria = cmbCategoria.SelectedItem?.ToString();
             string nombre = txtNombreProducto.Text.Trim().ToLower();
 
-            CompraBLL compraBLL = new CompraBLL(new CompraDAL(), new ProductoDAL());
-            var compras = compraBLL.ObtenerTodas()
-                .Where(c=>c.Detalles.Any(d=>(string.IsNullOrEmpty(categoria) || d.Categoria.Equals(categoria,StringComparison.OrdinalIgnoreCase)) &&
+
+            var compras = this.compraBLL.ObtenerTodas()
+                .Where(c => c.Detalles.Any(d => (string.IsNullOrEmpty(categoria) || d.Categoria.Equals(categoria, StringComparison.OrdinalIgnoreCase)) &&
                 (string.IsNullOrEmpty(nombre) || d.NombreProducto.ToLower().Contains(nombre))))
                 .ToList();
             dgvCompras.DataSource = compras;
@@ -59,9 +67,9 @@ namespace alquilerCanchasFutbol
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             string cliente = txtNombreCliente.Text.Trim().ToLower();
-            CompraBLL compraBLL =new CompraBLL(new CompraDAL(), new ProductoDAL());
-            var compras = compraBLL.ObtenerTodas()
-                .Where(c=>c.Cliente.ToLower().Contains(cliente))
+
+            var compras = this.compraBLL.ObtenerTodas()
+                .Where(c => c.Cliente.ToLower().Contains(cliente))
                 .ToList();
             dgvCompras.DataSource = compras;
             MostrarTotal(compras);

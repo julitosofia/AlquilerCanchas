@@ -16,13 +16,27 @@ namespace alquilerCanchasFutbol
     public partial class FormCompra : Form
     {
         List<DetalleCompra> carrito = new List<DetalleCompra>();
-        private ProductoBLL productoBLL = new ProductoBLL(new ProductoDAL());
-        private CompraBLL compraBLL = new CompraBLL(new CompraDAL(), new ProductoDAL());
+
+
+        private readonly ConexionDAL conn = new ConexionDAL();
+
+
+        private ProductoBLL productoBLL;
+        private CompraBLL compraBLL;
+        private VentaBLL ventaBll;
+
         private Usuario usuario;
         public FormCompra(Usuario usuario)
         {
             InitializeComponent();
             this.usuario = usuario;
+
+            var productoDAL = new ProductoDAL(conn);
+            var compraDAL = new CompraDAL(conn);
+
+            this.productoBLL = new ProductoBLL(productoDAL);
+            this.compraBLL = new CompraBLL(compraDAL, productoDAL);
+            this.ventaBll = new VentaBLL();
             CargarProductos();
         }
         private void CargarProductos()
@@ -85,14 +99,16 @@ namespace alquilerCanchasFutbol
         private void btnConfirmarCompra_Click(object sender, EventArgs e)
         {
             Compra nuevaCompra;
+
             try
             {
                 nuevaCompra = ObtenerDatosDeCompraDelFormulario();
             }
+
             catch (InvalidOperationException validationEx)
             {
                 MessageBox.Show(validationEx.Message, "Validación Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Salir si falla la validación del formulario.
+                return;
             }
             catch (Exception dataEx)
             {
@@ -100,44 +116,36 @@ namespace alquilerCanchasFutbol
                 return;
             }
 
-            // Paso 2: Iniciar la Unidad de Trabajo (Transacción)
-            var connDal = new ConexionDAL();
-            string cadenaConexion = connDal.CadenaConexion;
 
-            using (var uow = new UnitOfWork(cadenaConexion)) // La UoW abre la conexión e inicia la transacción
+            conn.IniciarTransaccion();
+
+            try
             {
-                try
-                {
-                    // Instanciar la BLL inyectando los repositorios con la transacción activa de la UoW
-                    var compraBLL = new CompraBLL(uow.Compras, uow.Productos);
-                    string mensaje;
 
-                    // Paso 3: Ejecutar la lógica de negocio (validación de stock, etc.)
-                    bool exito = compraBLL.RegistrarCompra(nuevaCompra, out mensaje);
+                string mensaje;
 
-                    if (exito)
-                    {
-                        // Paso 4a: Lógica exitosa -> CONFIRMAR
-                        uow.Commit();
-                        MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MostrarTicket(nuevaCompra); // Muestra el ticket si todo fue bien
-                                                    // LimpiarFormulario(); // Función para resetear campos
-                    }
-                    else
-                    {
-                        // Paso 4b: Fallo de lógica de negocio (ej. stock insuficiente, validado en BLL) -> REVERTIR
-                        uow.Rollback();
-                        MessageBox.Show(mensaje, "Fallo en la Compra", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                catch (Exception ex)
+
+                bool exito = compraBLL.RegistrarCompra(nuevaCompra, out mensaje);
+
+                if (exito)
                 {
-                    // Paso 4c: Fallo del sistema (ej. error SQL, conexión, o error no capturado en DAL) -> REVERTIR
-                    // Este catch asegura que cualquier excepción lanzada por CompraDAL (ya sin try/catch interno) 
-                    // sea manejada aquí con un Rollback, resolviendo el error de "SqlTransaction completed".
-                    uow.Rollback();
-                    MessageBox.Show($"Ocurrió un error crítico durante el registro: {ex.Message}", "Error Crítico del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    conn.ConfirmarTransaccion();
+                    MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MostrarTicket(nuevaCompra);
+
                 }
+                else
+                {
+
+                    conn.CancelarTransaccion();
+                    MessageBox.Show(mensaje, "Fallo en la Compra", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                conn.CancelarTransaccion();
+                MessageBox.Show($"Ocurrió un error crítico durante el registro: {ex.Message}", "Error Crítico del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void MostrarTicket(Compra compra)
@@ -166,7 +174,7 @@ namespace alquilerCanchasFutbol
         }
         private Compra ObtenerDatosDeCompraDelFormulario()
         {
-            // ... (Se asume que txtNombreCliente es el nombre correcto del TextBox)
+
             string nombreCliente = txtNombreCliente.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(nombreCliente))
@@ -183,17 +191,11 @@ namespace alquilerCanchasFutbol
 
             var dgvDetallesCompra = (DataGridView)this.Controls.Find("dgvCarrito", true).FirstOrDefault() ?? new DataGridView();
 
-            // ❌ LÍNEA(S) A ELIMINAR O COMENTAR (ESTO ES LO QUE ESTÁ CAUSANDO EL ERROR) ❌
-            /* if (dgvDetallesCompra.Rows.Count == 0 || (dgvDetallesCompra.Rows.Count == 1 && dgvDetallesCompra.AllowUserToAddRows))
-            {
-                throw new InvalidOperationException("El carrito no contiene productos. Agregue al menos un producto.");
-            }
-            */
-            // -------------------------------------------------------------------------------------------------------
+
 
             foreach (DataGridViewRow fila in dgvDetallesCompra.Rows)
             {
-                // Esta condición es la que correctamente ignora la fila de agregar
+
                 if (!fila.IsNewRow && fila.Cells["IdProducto"].Value != null)
                 {
                     try
@@ -202,7 +204,7 @@ namespace alquilerCanchasFutbol
                         {
                             IdProducto = Convert.ToInt32(fila.Cells["IdProducto"].Value),
                             NombreProducto = fila.Cells["NombreProducto"].Value.ToString(),
-                            // MUY IMPORTANTE: Asegúrate de que los valores de Cantidad y Precio no sean DBNull o nulos.
+
                             Cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value),
                             PrecioUnitario = Convert.ToDecimal(fila.Cells["PrecioUnitario"].Value),
                             Categoria = fila.Cells["Categoria"].Value?.ToString() ?? string.Empty
@@ -217,14 +219,62 @@ namespace alquilerCanchasFutbol
                 }
             }
 
-            // ✅ LÍNEA(S) A AGREGAR O MOVER (CORRECCIÓN: Validar si la lista final tiene algo) ✅
+
             if (compra.Detalles.Count == 0)
             {
                 throw new InvalidOperationException("El carrito no contiene productos. Agregue al menos un producto.");
             }
-            // -----------------------------------------------------------------------------------------
+
 
             return compra;
+        }
+
+        private void btnExportarXml_Click(object sender, EventArgs e)
+        {
+            string mensaje;
+
+            bool exito = this.ventaBll.ExportarVentasAXml(out mensaje);
+
+            if (exito)
+            {
+                MessageBox.Show(mensaje, "Exportación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error de Exportación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnImportarXml_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ventasDesdeXml = this.ventaBll.ImportarVentasDesdeXml();
+
+                if (ventasDesdeXml != null && ventasDesdeXml.Count > 0)
+                {
+                    MessageBox.Show(
+                        $"Se han cargado {ventasDesdeXml.Count} registros de VENTAS desde 'ventas.xml' para verificación. (No se modifica la compra actual)",
+                        "Importación Exitosa de Ventas",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                }
+                else
+                {
+                    MessageBox.Show(
+                       "El archivo 'ventas.xml' no existe, está vacío o corrupto. No se pudo importar.",
+                       "Error/Advertencia de Importación",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Warning
+                   );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error crítico al importar XML: {ex.Message}", "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -40,6 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnModificarProducto = new System.Windows.Forms.Button();
+            this.btnExportarXml = new System.Windows.Forms.Button();
+            this.btnImportarXml = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
@@ -146,12 +148,34 @@
             this.btnModificarProducto.UseVisualStyleBackColor = true;
             this.btnModificarProducto.Click += new System.EventHandler(this.btnModificarProducto_Click);
             // 
+            // btnExportarXml
+            // 
+            this.btnExportarXml.Location = new System.Drawing.Point(364, 248);
+            this.btnExportarXml.Name = "btnExportarXml";
+            this.btnExportarXml.Size = new System.Drawing.Size(101, 23);
+            this.btnExportarXml.TabIndex = 14;
+            this.btnExportarXml.Text = "Exportar XML";
+            this.btnExportarXml.UseVisualStyleBackColor = true;
+            this.btnExportarXml.Click += new System.EventHandler(this.btnExportarXml_Click);
+            // 
+            // btnImportarXml
+            // 
+            this.btnImportarXml.Location = new System.Drawing.Point(364, 219);
+            this.btnImportarXml.Name = "btnImportarXml";
+            this.btnImportarXml.Size = new System.Drawing.Size(101, 23);
+            this.btnImportarXml.TabIndex = 15;
+            this.btnImportarXml.Text = "Importar XML";
+            this.btnImportarXml.UseVisualStyleBackColor = true;
+            this.btnImportarXml.Click += new System.EventHandler(this.btnImportarXml_Click);
+            // 
             // FormProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnImportarXml);
+            this.Controls.Add(this.btnExportarXml);
             this.Controls.Add(this.btnModificarProducto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -188,5 +212,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnModificarProducto;
+        private System.Windows.Forms.Button btnExportarXml;
+        private System.Windows.Forms.Button btnImportarXml;
     }
 }

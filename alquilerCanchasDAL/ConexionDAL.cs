@@ -87,5 +87,39 @@ namespace alquilerCanchasDAL
             transaccion?.Rollback();
             Cerrar();
         }
+        public int EjecutarNonQueryTransacciones(string nombreSP, List<SqlParameter>parametros)
+        {
+            if (conexion == null || conexion.State != ConnectionState.Open)
+            {
+                Abrir();
+            }
+
+            using (var cmd = new SqlCommand(nombreSP, conexion, transaccion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (parametros != null)
+                {
+                    cmd.Parameters.AddRange(parametros.ToArray());
+                }
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public object EjecutarEscalarTransaccion(string nombreSP, List<SqlParameter> parametros)
+        {
+            if (conexion == null || conexion.State != ConnectionState.Open)
+            {
+                Abrir();
+            }
+
+            using (var cmd = new SqlCommand(nombreSP, conexion, transaccion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (parametros != null)
+                {
+                    cmd.Parameters.AddRange(parametros.ToArray());
+                }
+                return cmd.ExecuteScalar(); // Esta línea ahora usará una 'conexion' válida.
+            }
+        }
     }
 }

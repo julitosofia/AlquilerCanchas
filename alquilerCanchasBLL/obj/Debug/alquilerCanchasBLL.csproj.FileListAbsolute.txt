@@ -9,3 +9,5 @@ D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchas
 D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquiler.209CC4F4.Up2Date
 D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchasBLL.dll
 D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\obj\Debug\alquilerCanchasBLL.pdb
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\Utils.dll
+D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasBLL\bin\Debug\Utils.pdb

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using alquilerCanchasBE;
 using alquilerCanchasDAL;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
+using Utils;
 
 namespace alquilerCanchasBLL
 {
@@ -108,6 +112,47 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
+        public bool ExportarVentasAXml(out string mensaje)
+        {
 
+            var ventas = ObtenerVentas();
+
+            if (ventas == null || ventas.Count == 0)
+            {
+                mensaje = "No hay ventas para exportar.";
+                return false;
+            }
+
+            try
+            {
+
+                var xmlManager = new XmlManager<Venta>("ventas.xml");
+
+
+                bool exito = xmlManager.Guardar(ventas);
+
+                if (exito)
+                {
+                    mensaje = "Ventas exportadas a 'ventas.xml' correctamente.";
+                    return true;
+                }
+                else
+                {
+                    mensaje = "Error desconocido al intentar guardar el archivo XML de ventas.";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                mensaje = $"Error de sistema al exportar las ventas: {ex.Message}";
+                return false;
+            }
+        }
+        public List<Venta> ImportarVentasDesdeXml()
+        {
+            var xmlManager = new XmlManager<Venta>("ventas.xml");
+            return xmlManager.Cargar();
+        }
     }
 }

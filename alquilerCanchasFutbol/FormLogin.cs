@@ -15,10 +15,18 @@ namespace alquilerCanchasFutbol
 {
     public partial class FormLogin : Form
     {
-        private UsuarioBLL usuarioBLL= new UsuarioBLL();
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+        private readonly UsuarioBLL usuarioBLL;
         public FormLogin()
         {
             InitializeComponent();
+
+
+            var usuarioDAL = new UsuarioDAL(conexion);
+
+            this.usuarioBLL = new UsuarioBLL(usuarioDAL);
+
             this.KeyPreview = true;
             this.KeyDown += FormLogin_KeyDown;
             txtClave.PasswordChar = '*';
@@ -42,11 +50,11 @@ namespace alquilerCanchasFutbol
                 return;
             }
             Usuario usuario = resultado.Usuario;
-            if(usuario.Rol == "Cliente")
+            if(usuario.Rol == "CLIENTE")
             {
                 new FormCliente(usuario).Show();
             }
-            else if (usuario.Rol== "Empleado")
+            else if (usuario.Rol== "EMPLEADO")
             {
                 new FormEmpleado(usuario).Show();
             }

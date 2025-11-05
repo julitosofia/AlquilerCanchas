@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProducto xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Producto>
+    <IdProducto>1003</IdProducto>
+    <Nombre>camiseta</Nombre>
+    <Precio>10.00</Precio>
+    <Stock>3</Stock>
+    <Categoria>ropa</Categoria>
+  </Producto>
+  <Producto>
+    <IdProducto>1005</IdProducto>
+    <Nombre>medias</Nombre>
+    <Precio>150.00</Precio>
+    <Stock>4</Stock>
+    <Categoria>ropa</Categoria>
+  </Producto>
+  <Producto>
+    <IdProducto>1004</IdProducto>
+    <Nombre>mercurial</Nombre>
+    <Precio>1500.00</Precio>
+    <Stock>2</Stock>
+    <Categoria>Botines</Categoria>
+  </Producto>
+  <Producto>
+    <IdProducto>1002</IdProducto>
+    <Nombre>pantalon temperley</Nombre>
+    <Precio>25000.00</Precio>
+    <Stock>9</Stock>
+    <Categoria>ropa deportiva</Categoria>
+  </Producto>
+  <Producto>
+    <IdProducto>1</IdProducto>
+    <Nombre>Predator</Nombre>
+    <Precio>15000.00</Precio>
+    <Stock>3</Stock>
+    <Categoria>Botines</Categoria>
+  </Producto>
+  <Producto>
+    <IdProducto>3</IdProducto>
+    <Nombre>Remera Temperley</Nombre>
+    <Precio>15000.00</Precio>
+    <Stock>9</Stock>
+    <Categoria>Camisetas</Categoria>
+  </Producto>
+  <Producto>
+    <IdProducto>2</IdProducto>
+    <Nombre>Total90</Nombre>
+    <Precio>30000.00</Precio>
+    <Stock>3</Stock>
+    <Categoria>Botines</Categoria>
+  </Producto>
+</ArrayOfProducto>

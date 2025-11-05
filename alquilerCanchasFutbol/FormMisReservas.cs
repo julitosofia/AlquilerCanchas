@@ -16,18 +16,28 @@ namespace alquilerCanchasFutbol
     public partial class FormMisReservas : Form
     {
         private Usuario usuario;
+
+
+        private readonly ConexionDAL conexion = new ConexionDAL();
+
+
+        private readonly ReservaBLL reservaBLL;
         public FormMisReservas(Usuario usuario)
         {
             InitializeComponent();
-            this.usuario=usuario;
+            this.usuario = usuario;
             lblCliente.Text = $"Reservas de: {usuario.Nombre}";
+
+
+            var reservaDAL = new ReservaDAL(conexion); 
+            this.reservaBLL = new ReservaBLL(reservaDAL);
+
             CargarReservas();
         }
         private void CargarReservas()
         {
-            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
-            var reservas = reservaBLL.ObtenerReservasPorUsuario(usuario.IdUsuario);
-            dgvReservas.DataSource=reservas;
+            var reservas = this.reservaBLL.ObtenerReservasPorUsuario(usuario.Nombre);
+            dgvReservas.DataSource = reservas;
         }
         private void FormMisReservas_Load(object sender, EventArgs e)
         {
@@ -38,16 +48,49 @@ namespace alquilerCanchasFutbol
         {
             if (dgvReservas.CurrentRow == null) return;
             Reserva reserva = (Reserva)dgvReservas.CurrentRow.DataBoundItem;
-            if(reserva.Fecha<DateTime.Now)
+
+            if (reserva.Fecha < DateTime.Now)
             {
                 MessageBox.Show("No se puede cancelar una reserva pasada.");
                 return;
             }
-            ReservaBLL reservaBLL = new ReservaBLL(new ReservaDAL());
-            bool ok = reservaBLL.CancelarReserva(reserva.IdReserva);
+
+
+            bool ok = this.reservaBLL.CancelarReserva(reserva.IdReserva);
+
             MessageBox.Show(ok ? "Reserva cancelada correctamente." : "Error al cancelar la reserva.");
             CargarReservas();
+        }
 
+        private void btnExportarXml_Click(object sender, EventArgs e)
+        {
+            string mensaje;
+            bool exito = reservaBLL.ExportarReservasAXml(out mensaje);
+
+            MessageBox.Show(mensaje, exito ? "Éxito" : "Error", MessageBoxButtons.OK, exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+        }
+
+        private void btnImportarXml_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Reserva> reservasImportadas = reservaBLL.ImportarReservasDesdeXml();
+
+                if (reservasImportadas != null && reservasImportadas.Count > 0)
+                {
+
+                    MessageBox.Show($"Se cargaron {reservasImportadas.Count} reservas desde 'reservas.xml'.", "Importación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron reservas válidas en 'reservas.xml' o el archivo no existe.", "Importación Fallida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al intentar importar: {ex.Message}", "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

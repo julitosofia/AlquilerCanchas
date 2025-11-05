@@ -12,95 +12,79 @@ namespace alquilerCanchasDAL
     {
         private readonly ConexionDAL conexion = new ConexionDAL();
 
+
         public int ActualizarVenta(int idVenta, int idUsuario, DateTime fecha)
-        {
-            var parametros = new List<SqlParameter>
-        {
+            => conexion.EjecutarNonQuery("SP_ActualizarVenta", new List<SqlParameter>
+            {
             new SqlParameter("@IdVenta", idVenta),
             new SqlParameter("@IdUsuario", idUsuario),
             new SqlParameter("@Fecha", fecha)
-        };
-            return conexion.EjecutarNonQuery("SP_ActualizarVenta", parametros);
-        }
+            }); 
 
         public int ActualizarDetalleVenta(int idDetalle, int cantidad, decimal precioUnitario)
-        {
-            var parametros = new List<SqlParameter>
-        {
+            => conexion.EjecutarNonQuery("SP_ActualizarDetalleVenta", new List<SqlParameter>
+            {
             new SqlParameter("@IdDetalle", idDetalle),
             new SqlParameter("@Cantidad", cantidad),
             new SqlParameter("@PrecioUnitario", precioUnitario)
-        };
-            return conexion.EjecutarNonQuery("SP_ActualizarDetalleVenta", parametros);
-        }
+            }); 
 
         public SqlDataReader ListarVenta()
         {
+
             return conexion.EjecutarReader("SP_ListarVenta", null);
         }
 
+
         public bool Eliminar(int idVenta)
-        {
-            var cn = new SqlConnection(conexion.CadenaConexion);
-            cn.Open();
-
-            var cmd = new SqlCommand("SP_EliminarVenta", cn)
+            => conexion.EjecutarNonQuery("SP_EliminarVenta", new List<SqlParameter>
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.AddWithValue("@IdVenta", idVenta);
+            new SqlParameter("@IdVenta", idVenta)
+            }) > 0;
 
-            bool resultado = cmd.ExecuteNonQuery() > 0;
-            cn.Close();
-            return resultado;
-        }
+
 
         public bool InsertarVenta(Venta v, List<VentaDetalle> detalles)
         {
-            var cn = new SqlConnection(conexion.CadenaConexion);
-            cn.Open();
-            var tx = cn.BeginTransaction();
+
+            conexion.IniciarTransaccion();
 
             try
             {
-                int idVenta;
 
-                var cmd = new SqlCommand("SP_InsertarVenta", cn, tx)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                cmd.Parameters.AddWithValue("@Fecha", v.Fecha);
-                cmd.Parameters.AddWithValue("@IdUsuario", v.IdUsuario);
-                cmd.Parameters.AddWithValue("@Total", v.Total);
+                var parametrosVenta = new List<SqlParameter>
+            {
+                new SqlParameter("@Fecha", v.Fecha),
+                new SqlParameter("@IdUsuario", v.IdUsuario),
+                new SqlParameter("@Total", v.Total)
+            };
 
-                idVenta = Convert.ToInt32(cmd.ExecuteScalar());
+
+                object resultadoEscalar = conexion.EjecutarEscalarTransaccion("SP_InsertarVenta", parametrosVenta);
+                int idVenta = Convert.ToInt32(resultadoEscalar);
+
 
                 foreach (var d in detalles)
                 {
-                    var cmdDetalle = new SqlCommand("SP_InsertarDetalleVenta", cn, tx)
-                    {
-                        CommandType = CommandType.StoredProcedure
-                    };
-                    cmdDetalle.Parameters.AddWithValue("@IdVenta", idVenta);
-                    cmdDetalle.Parameters.AddWithValue("@IdProducto", d.IdProducto);
-                    cmdDetalle.Parameters.AddWithValue("@Cantidad", d.Cantidad);
-                    cmdDetalle.Parameters.AddWithValue("@PrecioUnitario", d.PrecioUnitario);
-
-                    cmdDetalle.ExecuteNonQuery();
+                    var parametrosDetalle = new List<SqlParameter>
+                {
+                    new SqlParameter("@IdVenta", idVenta),
+                    new SqlParameter("@IdProducto", d.IdProducto),
+                    new SqlParameter("@Cantidad", d.Cantidad),
+                    new SqlParameter("@PrecioUnitario", d.PrecioUnitario)
+                };
+                    conexion.EjecutarNonQueryTransacciones("SP_InsertarDetalleVenta", parametrosDetalle);
                 }
 
-                tx.Commit();
-                cn.Close();
+
+                conexion.ConfirmarTransaccion();
                 return true;
             }
             catch
             {
-                tx.Rollback();
-                cn.Close();
+                conexion.CancelarTransaccion();
                 return false;
             }
         }
-
-
     }
 }

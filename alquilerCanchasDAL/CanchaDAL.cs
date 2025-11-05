@@ -11,77 +11,82 @@ namespace alquilerCanchasDAL
     public class CanchaDAL : IRepository<Cancha>
     {
         private readonly ConexionDAL conexion = new ConexionDAL();
-
+        public CanchaDAL(ConexionDAL _conexion)
+        {
+            conexion = _conexion;
+        }
         public List<Cancha>Listar()
         {
             var lista = new List<Cancha>();
-            var cn = new SqlConnection(conexion.CadenaConexion);
-            cn.Open();
-
-            var cmd = new SqlCommand("SP_ListarCancha", cn)
+            var dr = conexion.EjecutarReader("SP_ListarCancha", null);
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
-            var dr = cmd.ExecuteReader();
-            while(dr.Read())
-            {
-                lista.Add(new Cancha
+                while(dr.Read())
                 {
-                    IdCancha = (int)dr["IdCancha"],
-                    Nombre = dr["Nombre"].ToString(),
-                    Tipo = dr["Tipo"].ToString(),
-                    PrecioHora = (decimal)dr["Preciohora"]
-                });
+                    lista.Add(MapearCancha(dr));
+                }
             }
-            dr.Close();
-            cn.Close();
+            finally
+            {
+                if(dr!=null && !dr.IsClosed)
+                {
+                    dr.Close();
+                }
+            }
             return lista;
         }
 
         public Cancha ObtenerPorId(int id)
         {
+            Cancha cancha = null;
             var parametros = new List<SqlParameter> { new SqlParameter("@IdCancha", id) };
             var reader = conexion.EjecutarReader("SP_ObtenerCanchaPorId", parametros);
-            if(reader.Read())
+            try
             {
-                var cancha = new Cancha
+                if(reader.Read())
                 {
-                    IdCancha = (int)reader["IdCancha"],
-                    Nombre = reader["Nombre"].ToString(),
-                    Tipo = reader["Tipo"].ToString(),
-                    PrecioHora = (decimal)reader["PrecioHora"]
-                };
-                reader.Close();
-                return cancha;
+                    cancha = MapearCancha(reader);
+                }
             }
-            reader.Close();
-            return null;
+            finally
+            {
+                if(reader != null && !reader.IsClosed)
+                {
+                    reader.Close();
+                }
+            }
+            return cancha;
         }
         public bool Insertar(Cancha cancha)
-        {
-            var parametros = new List<SqlParameter>
+            => conexion.EjecutarNonQuery("SP_InsertarCancha", new List<SqlParameter>
             {
-                new SqlParameter("@Nombre",cancha.Nombre),
-                new SqlParameter("@Tipo",cancha.Tipo),
-                new SqlParameter("@PrecioHora",cancha.PrecioHora)
-            };
-            return conexion.EjecutarNonQuery("SP_InsertarCancha", parametros) > 0;
-        }
+                new SqlParameter("@Nombre", cancha.Nombre),
+                new SqlParameter("@Tipo", cancha.Tipo),
+                new SqlParameter("@PrecioHora", cancha.PrecioHora)
+            }) > 0;
         public bool Actualizar(Cancha cancha)
-        {
-            var parametros = new List<SqlParameter>
+            => conexion.EjecutarNonQuery("SP_ActualizarCancha", new List<SqlParameter>
             {
                 new SqlParameter("@IdCancha",cancha.IdCancha),
-                new SqlParameter("@Nombre",cancha.Nombre),
-                new SqlParameter("@Tipo",cancha.Tipo),
+                new SqlParameter("@Nombre", cancha.Nombre),
+                new SqlParameter("@Tipo", cancha.Tipo),
                 new SqlParameter("@PrecioHora",cancha.PrecioHora)
-            };
-            return conexion.EjecutarNonQuery("SP_ActualizarCancha", parametros) > 0;
-        }
+            }) > 0;
         public bool Eliminar(int id)
+            => conexion.EjecutarNonQuery("SP_EliminarCancha", new List<SqlParameter>
+            {
+                new SqlParameter("@IdCancha", id)
+            }) > 0;
+
+        private Cancha MapearCancha(SqlDataReader dr)
         {
-            var parametros = new List<SqlParameter> { new SqlParameter("@IdCancha", id) };
-            return conexion.EjecutarNonQuery("SP_EliminarCancha", parametros) > 0;
+            return new Cancha
+            {
+                IdCancha = (int)dr["IdCancha"],
+                Nombre = dr["Nombre"].ToString(),
+                Tipo = dr["Tipo"].ToString(),
+                PrecioHora = (decimal)dr["PrecioHora"]
+            };
         }
     }
 }

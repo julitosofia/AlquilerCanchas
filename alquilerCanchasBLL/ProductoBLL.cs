@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using alquilerCanchasBE;
 using alquilerCanchasDAL;
+using System.IO;
+using System.Xml.Serialization;
+using System.Xml;
+using Utils;
 
 namespace alquilerCanchasBLL
 {
-    public class ProductoBLL
+    public class ProductoBLL 
     {
         private readonly IProductoRepository repo;
 
@@ -105,7 +109,50 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
+        public bool ExportarTodosAXml(out string mensaje)
+        {
+            var productos = repo.Listar();
+            if(productos == null || productos.Count == 0)
+            {
+                mensaje = "No hay productos para exportar.";
+                return false;
+            }
+            try
+            {
+                var xmlManager = new XmlManager<Producto>("producto.xml");
+                bool exito = xmlManager.Guardar(productos);
+                if(exito)
+                {
+                    mensaje = "Productos exportados a 'producto.xml' correctamente.";
+                    return true;
+                }
+                else
+                {
+                    mensaje = "Error desconocido al intentar guardar el archivo XML.";
+                    return false;
+                }
+            }
+            catch (Exception ep)
+            {
+                mensaje = $"Error de sistema al exportar: {ep.Message}";
+                return false;
+            }
+        }
+        public List<Producto> ImportarTodosDesdeXml()
+        {
+            try
+            {
+                var xmlManager = new XmlManager<Producto>("producto.xml");
 
+                List<Producto> productosCargados = xmlManager.Cargar();
+
+                return productosCargados;
+            }
+            catch
+            {
+                return new List<Producto>();
+            }
+        }
 
     }
 }
