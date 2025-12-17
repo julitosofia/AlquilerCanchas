@@ -16,7 +16,7 @@ namespace alquilerCanchasBLL
     public class UsuarioBLL
     {
         private readonly UsuarioDAL dal;
-        private readonly ConexionDAL conexion = new ConexionDAL();
+
         public UsuarioBLL(UsuarioDAL usuarioDal)
         {
             this.dal = usuarioDal;
@@ -68,14 +68,10 @@ namespace alquilerCanchasBLL
         }
 
         public List<Usuario> ObtenerUsuarios()
-        {
-            return dal.Listar();
-        }
+            => dal.Listar();
 
         public bool NombreUsuarioDisponible(string nombre)
-        {
-            return !dal.ExisteNombreUsuario(nombre);
-        }
+            => !dal.ExisteNombreUsuario(nombre);
 
         private string ValidarUsuario(Usuario u)
         {
@@ -93,9 +89,10 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
-        public bool ExportarUsuariosAXml(out string mensaje)
-        {
 
+
+        public bool ExportarUsuariosAXml(string rutaArchivo, out string mensaje)
+        {
             var usuarios = dal.Listar();
 
             if (usuarios == null || usuarios.Count == 0)
@@ -106,34 +103,27 @@ namespace alquilerCanchasBLL
 
             try
             {
-
-                var xmlManager = new XmlManager<Usuario>("usuarios.xml");
-
-
-                bool exito = xmlManager.Guardar(usuarios);
-
-                if (exito)
-                {
-                    mensaje = "Usuarios exportados a 'usuarios.xml' correctamente.";
-                    return true;
-                }
-                else
-                {
-                    mensaje = "Error desconocido al intentar guardar el archivo XML de usuarios.";
-                    return false;
-                }
+                dal.ExportarUsuariosXML(usuarios, rutaArchivo);
+                mensaje = $"Usuarios exportados a '{rutaArchivo}' correctamente.";
+                return true;
             }
             catch (Exception ex)
             {
-
                 mensaje = $"Error de sistema al exportar los usuarios: {ex.Message}";
                 return false;
             }
         }
-        public List<Usuario> ImportarUsuariosDesdeXml()
+
+        public List<Usuario> ImportarUsuariosDesdeXml(string rutaArchivo)
         {
-            var xmlManager = new XmlManager<Usuario>("usuarios.xml");
-            return xmlManager.Cargar();
+            var lista = dal.ImportarUsuariosXML(rutaArchivo);
+
+            if (lista == null || lista.Count == 0)
+                throw new InvalidOperationException("El archivo XML no contiene usuarios válidos.");
+
+            return lista;
         }
+
+
     }
 }

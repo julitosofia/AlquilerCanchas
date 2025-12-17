@@ -35,24 +35,7 @@ namespace alquilerCanchasBLL
         }
 
         public List<Venta> ObtenerVentas()
-        {
-            var lista = new List<Venta>();
-            var reader = dal.ListarVenta();
-
-            while (reader.Read())
-            {
-                lista.Add(new Venta
-                {
-                    IdVenta = (int)reader["IdVenta"],
-                    Fecha = (DateTime)reader["Fecha"],
-                    IdUsuario = (int)reader["IdUsuario"],
-                    Total = (decimal)reader["Total"]
-                });
-            }
-
-            reader.Close();
-            return lista;
-        }
+            => dal.ListarVenta();
 
         public bool ActualizarVenta(Venta venta, out string mensaje)
         {
@@ -112,10 +95,10 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
-        public bool ExportarVentasAXml(out string mensaje)
-        {
 
-            var ventas = ObtenerVentas();
+        public bool ExportarVentasAXml(string rutaArchivo, out string mensaje)
+        {
+            var ventas = dal.ListarVenta();
 
             if (ventas == null || ventas.Count == 0)
             {
@@ -125,34 +108,27 @@ namespace alquilerCanchasBLL
 
             try
             {
-
-                var xmlManager = new XmlManager<Venta>("ventas.xml");
-
-
-                bool exito = xmlManager.Guardar(ventas);
-
-                if (exito)
-                {
-                    mensaje = "Ventas exportadas a 'ventas.xml' correctamente.";
-                    return true;
-                }
-                else
-                {
-                    mensaje = "Error desconocido al intentar guardar el archivo XML de ventas.";
-                    return false;
-                }
+                dal.ExportarVentasXML(ventas, rutaArchivo);
+                mensaje = $"Ventas exportadas a '{rutaArchivo}' correctamente.";
+                return true;
             }
             catch (Exception ex)
             {
-
                 mensaje = $"Error de sistema al exportar las ventas: {ex.Message}";
                 return false;
             }
         }
-        public List<Venta> ImportarVentasDesdeXml()
+
+        public List<Venta> ImportarVentasDesdeXml(string rutaArchivo)
         {
-            var xmlManager = new XmlManager<Venta>("ventas.xml");
-            return xmlManager.Cargar();
+            var lista = dal.ImportarVentasXML(rutaArchivo);
+
+            if (lista == null || lista.Count == 0)
+                throw new InvalidOperationException("El archivo XML no contiene ventas válidas.");
+
+            return lista;
         }
+
+
     }
 }

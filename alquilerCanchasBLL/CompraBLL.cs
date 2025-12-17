@@ -51,63 +51,13 @@ namespace alquilerCanchasBLL
         }
 
         public List<Compra> ListarCompras()
-        {
-            var lista = new List<Compra>();
-            var reader = compraRepo.ListarCompra();
-
-            while (reader.Read())
-            {
-                lista.Add(new Compra
-                {
-                    IdCompra = (int)reader["IdVenta"],
-                    Fecha = (DateTime)reader["Fecha"],
-                    Cliente = reader["Usuario"].ToString()
-                });
-            }
-
-            reader.Close();
-            return lista;
-        }
+            => compraRepo.ListarCompra();
 
         public List<DetalleCompra> ObtenerDetalles(int idCompra)
-        {
-            var lista = new List<DetalleCompra>();
-            var reader = compraRepo.ObtenerDetallesPorCompra(idCompra);
-
-            while (reader.Read())
-            {
-                lista.Add(new DetalleCompra
-                {
-                    IdProducto = (int)reader["IdProducto"],
-                    NombreProducto = reader["Nombre"].ToString(),
-                    Cantidad = (int)reader["Cantidad"],
-                    PrecioUnitario = (decimal)reader["PrecioUnitario"],
-                    Categoria = reader["Categoria"].ToString()
-                });
-            }
-
-            reader.Close();
-            return lista;
-        }
+            => compraRepo.ObtenerDetallesPorCompra(idCompra);
 
         public List<Compra> ObtenerTodas()
-        {
-            var lista = new List<Compra>();
-            var reader = compraRepo.ObtenerTodasLasCompras();
-
-            while (reader.Read())
-            {
-                lista.Add(new Compra
-                {
-                    IdCompra = (int)reader["IdVenta"],
-                    Fecha = (DateTime)reader["Fecha"],
-                    Cliente = reader["Usuario"].ToString()
-                });
-            }
-
-            reader.Close();
-            return lista;
-        }
+            => compraRepo.ObtenerTodasLasCompras();
 
         private bool ValidarCompra(Compra compra, out string mensaje)
         {
@@ -133,9 +83,10 @@ namespace alquilerCanchasBLL
 
             return true;
         }
-        public bool ExportarComprasAXml(out string mensaje)
-        {
 
+        // --- Métodos XML delegados a DAL ---
+        public bool ExportarComprasAXml(string rutaArchivo, out string mensaje)
+        {
             var compras = ObtenerTodas();
 
             if (compras == null || compras.Count == 0)
@@ -146,35 +97,28 @@ namespace alquilerCanchasBLL
 
             try
             {
-
-                var xmlManager = new XmlManager<Compra>("compras.xml");
-
-
-                bool exito = xmlManager.Guardar(compras);
-
-                if (exito)
-                {
-                    mensaje = "Compras exportadas a 'compras.xml' correctamente.";
-                    return true;
-                }
-                else
-                {
-
-                    mensaje = "Error desconocido al intentar guardar el archivo XML de compras.";
-                    return false;
-                }
+                compraRepo.ExportarComprasXML(compras, rutaArchivo);
+                mensaje = $"Compras exportadas a '{rutaArchivo}' correctamente.";
+                return true;
             }
             catch (Exception ex)
             {
-
                 mensaje = $"Error de sistema al exportar las compras: {ex.Message}";
                 return false;
             }
         }
-        public List<Compra> ImportarComprasDesdeXml()
+
+        public List<Compra> ImportarComprasDesdeXml(string rutaArchivo)
         {
-            var xmlManager = new XmlManager<Compra>("compras.xml");
-            return xmlManager.Cargar();
+            var lista = compraRepo.ImportarComprasXML(rutaArchivo);
+
+            if (lista == null || lista.Count == 0)
+                throw new InvalidOperationException("El archivo XML no contiene compras válidas.");
+
+            return lista;
         }
+
+
+
     }
 }

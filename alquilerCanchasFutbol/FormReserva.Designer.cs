@@ -45,6 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnExportarXml = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,13 +206,23 @@
             // 
             // btnExportarXml
             // 
-            this.btnExportarXml.Location = new System.Drawing.Point(713, 361);
+            this.btnExportarXml.Location = new System.Drawing.Point(673, 294);
             this.btnExportarXml.Name = "btnExportarXml";
-            this.btnExportarXml.Size = new System.Drawing.Size(75, 23);
+            this.btnExportarXml.Size = new System.Drawing.Size(115, 23);
             this.btnExportarXml.TabIndex = 11;
-            this.btnExportarXml.Text = "XML";
+            this.btnExportarXml.Text = "Exportar XML";
             this.btnExportarXml.UseVisualStyleBackColor = true;
             this.btnExportarXml.Click += new System.EventHandler(this.btnExportarXml_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(673, 323);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Importar XML";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormReserva
             // 
@@ -219,6 +230,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.ClientSize = new System.Drawing.Size(800, 396);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExportarXml);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormReserva";
@@ -249,5 +261,6 @@
         private System.Windows.Forms.DateTimePicker dtpHoraFin;
         private System.Windows.Forms.DateTimePicker dtpHoraInicio;
         private System.Windows.Forms.Button btnExportarXml;
+        private System.Windows.Forms.Button button1;
     }
 }

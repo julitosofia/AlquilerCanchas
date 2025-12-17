@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfReserva xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Reserva>
+    <IdReserva>1</IdReserva>
+    <IdCancha>2</IdCancha>
+    <Cliente>luis</Cliente>
+    <Fecha>2025-09-10T00:00:00</Fecha>
+    <HoraInicio>1900-01-01T20:00:00</HoraInicio>
+    <HoraFin>1900-01-01T21:00:00</HoraFin>
+    <Total>2500.00</Total>
+    <Estado>ACTIVA</Estado>
+    <IdUsuario>2</IdUsuario>
+  </Reserva>
+  <Reserva>
+    <IdReserva>2</IdReserva>
+    <IdCancha>5</IdCancha>
+    <Cliente>luis</Cliente>
+    <Fecha>2025-10-08T00:00:00</Fecha>
+    <HoraInicio>2025-10-07T21:07:30.82</HoraInicio>
+    <HoraFin>2025-10-07T22:07:30</HoraFin>
+    <Total>3499.20</Total>
+    <Estado>ACTIVA</Estado>
+    <IdUsuario>2</IdUsuario>
+  </Reserva>
+  <Reserva>
+    <IdReserva>3</IdReserva>
+    <IdCancha>9</IdCancha>
+    <Cliente>luis</Cliente>
+    <Fecha>2025-10-29T00:00:00</Fecha>
+    <HoraInicio>2025-10-28T21:48:51</HoraInicio>
+    <HoraFin>2025-10-28T22:48:51</HoraFin>
+    <Total>1800.00</Total>
+    <Estado>ACTIVA</Estado>
+    <IdUsuario>2</IdUsuario>
+  </Reserva>
+</ArrayOfReserva>

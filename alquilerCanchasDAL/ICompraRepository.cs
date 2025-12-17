@@ -10,8 +10,13 @@ namespace alquilerCanchasDAL
     public interface ICompraRepository
     {
         bool RegistrarCompra(Compra compra);
-        SqlDataReader ListarCompra();
-        SqlDataReader ObtenerDetallesPorCompra(int idCompra);
-        SqlDataReader ObtenerTodasLasCompras();
+
+        List<Compra> ListarCompra();
+        List<DetalleCompra> ObtenerDetallesPorCompra(int idCompra);
+        List<Compra> ObtenerTodasLasCompras();
+
+        void ExportarComprasXML(List<Compra> compras, string rutaArchivo);
+        List<Compra> ImportarComprasXML(string rutaArchivo);
+
     }
 }

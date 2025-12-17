@@ -1,10 +1,12 @@
-﻿using System;
+﻿using alquilerCanchasBE;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using alquilerCanchasBE;
+using System.Xml.Serialization;
 
 namespace alquilerCanchasDAL
 {
@@ -33,7 +35,6 @@ namespace alquilerCanchasDAL
 
             return usuario;
         }
-
 
         public bool Login(string nombre, string clave)
         {
@@ -124,7 +125,6 @@ namespace alquilerCanchasDAL
             return lista;
         }
 
-
         public bool RegistrarUsuario(Usuario usuario)
             => conexion.EjecutarNonQuery("SP_InsertarUsuario", new List<SqlParameter>
             {
@@ -132,5 +132,25 @@ namespace alquilerCanchasDAL
             new SqlParameter("@Clave", usuario.Clave),
             new SqlParameter("@Rol", usuario.Rol)
             }) > 0;
+
+        public void ExportarUsuariosXML(List<Usuario> usuarios, string rutaArchivo)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Usuario>));
+            using (var writer = new StreamWriter(rutaArchivo))
+            {
+                serializer.Serialize(writer, usuarios);
+            }
+        }
+
+        public List<Usuario> ImportarUsuariosXML(string rutaArchivo)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Usuario>));
+            using (var reader = new StreamReader(rutaArchivo))
+            {
+                return (List<Usuario>)serializer.Deserialize(reader);
+            }
+        }
+
+
     }
 }

@@ -65,31 +65,34 @@ namespace alquilerCanchasFutbol
         private void btnExportarXml_Click(object sender, EventArgs e)
         {
             string mensaje;
-            bool exito = reservaBLL.ExportarReservasAXml(out mensaje);
+            bool exito = reservaBLL.ExportarReservasAXml("reservas.xml", out mensaje);
 
-            MessageBox.Show(mensaje, exito ? "Éxito" : "Error", MessageBoxButtons.OK, exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+            MessageBox.Show(mensaje, exito ? "Éxito" : "Error",
+                MessageBoxButtons.OK,
+                exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
         }
 
         private void btnImportarXml_Click(object sender, EventArgs e)
         {
-            try
+            List<Reserva> reservasImportadas = reservaBLL.ImportarReservasDesdeXml("reservas.xml");
+
+            if (reservasImportadas != null && reservasImportadas.Count > 0)
             {
-                List<Reserva> reservasImportadas = reservaBLL.ImportarReservasDesdeXml();
-
-                if (reservasImportadas != null && reservasImportadas.Count > 0)
-                {
-
-                    MessageBox.Show($"Se cargaron {reservasImportadas.Count} reservas desde 'reservas.xml'.", "Importación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron reservas válidas en 'reservas.xml' o el archivo no existe.", "Importación Fallida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                MessageBox.Show(
+                    $"Se cargaron {reservasImportadas.Count} reservas desde 'reservas.xml'.",
+                    "Importación Exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error al intentar importar: {ex.Message}", "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "No se encontraron reservas válidas en 'reservas.xml' o el archivo no existe.",
+                    "Importación Fallida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
     }

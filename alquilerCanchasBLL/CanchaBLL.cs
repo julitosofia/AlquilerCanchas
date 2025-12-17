@@ -14,113 +14,71 @@ namespace alquilerCanchasBLL
 {
     public class CanchaBLL
     {
-        private readonly IRepository<Cancha> dal;
+        private readonly CanchaDAL canchaDAL;
 
-        public CanchaBLL(IRepository<Cancha> dal)
+        public CanchaBLL(CanchaDAL _canchaDAL)
         {
-            this.dal = dal;
+            canchaDAL = _canchaDAL;
         }
 
+        public List<Cancha> Listar()
+        {
+            return canchaDAL.Listar();
+        }
         public List<Cancha> ObtenerTodas()
+             => canchaDAL.Listar();
+
+
+        public Cancha ObtenerPorId(int id)
         {
-            return dal.Listar();
+            if (id <= 0)
+                throw new ArgumentException("El Id de la cancha debe ser mayor a cero.");
+
+            return canchaDAL.ObtenerPorId(id);
         }
 
-        public bool AgregarCancha(Cancha cancha, out string mensaje)
-        {
-            mensaje = ValidarCancha(cancha);
-
-            if (!string.IsNullOrEmpty(mensaje))
-                return false;
-
-            return dal.Insertar(cancha);
-        }
-
-        public bool ModificarCancha(Cancha cancha, out string mensaje)
-        {
-            if (cancha.IdCancha <= 0)
-            {
-                mensaje = "Id de cancha inválido.";
-                return false;
-            }
-
-            mensaje = ValidarCancha(cancha);
-
-            if (!string.IsNullOrEmpty(mensaje))
-                return false;
-
-            return dal.Actualizar(cancha);
-        }
-
-        public bool EliminarCancha(int idCancha, out string mensaje)
-        {
-            mensaje = string.Empty;
-
-            if (idCancha <= 0)
-            {
-                mensaje = "Id inválido.";
-                return false;
-            }
-
-            return dal.Eliminar(idCancha);
-        }
-
-        private string ValidarCancha(Cancha cancha)
+        public bool Insertar(Cancha cancha)
         {
             if (string.IsNullOrWhiteSpace(cancha.Nombre))
-                return "El nombre de la cancha es obligatorio.";
+                throw new ArgumentException("El nombre de la cancha es obligatorio.");
 
-            if (string.IsNullOrWhiteSpace(cancha.Tipo))
-                return "El tipo de cancha es obligatorio.";
-
-            if (cancha.PrecioHora < 0)
-                return "El precio por hora no puede ser negativo.";
-
-            return string.Empty;
+            return canchaDAL.Insertar(cancha);
         }
 
-        public bool ExportarCanchasAXml(out string mensaje)
+        public bool Actualizar(Cancha cancha)
         {
+            if (cancha.IdCancha <= 0)
+                throw new ArgumentException("Debe indicar un Id válido para actualizar.");
 
-            var canchas = ObtenerTodas();
-
-            if (canchas == null || canchas.Count == 0)
-            {
-                mensaje = "No hay canchas para exportar.";
-                return false;
-            }
-
-            try
-            {
-
-                var xmlManager = new XmlManager<Cancha>("canchas.xml");
-
-
-                bool exito = xmlManager.Guardar(canchas);
-
-                if (exito)
-                {
-                    mensaje = "Canchas exportadas a 'canchas.xml' correctamente.";
-                    return true;
-                }
-                else
-                {
-
-                    mensaje = "Error desconocido al intentar guardar el archivo XML de canchas.";
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                mensaje = $"Error de sistema al exportar las canchas: {ex.Message}";
-                return false;
-            }
+            return canchaDAL.Actualizar(cancha);
         }
-        public List<Cancha> ImportarCanchasDesdeXml()
+
+        public bool Eliminar(int id)
         {
-            var xmlManager = new XmlManager<Cancha>("canchas.xml");
-            return xmlManager.Cargar();
+            if (id <= 0)
+                throw new ArgumentException("Debe indicar un Id válido para eliminar.");
+
+            return canchaDAL.Eliminar(id);
+        }
+
+
+        public void ExportarCanchaXML(string rutaArchivo)
+        {
+            var lista = canchaDAL.Listar(); 
+            canchaDAL.ExportarCanchaXML(lista, rutaArchivo);
+        }
+
+        public List<Cancha> ImportarCanchaXML(string rutaArchivo)
+        {
+            var lista = canchaDAL.ImportarCanchaXML(rutaArchivo);
+
+
+            if (lista == null || lista.Count == 0)
+                throw new InvalidOperationException("El archivo XML no contiene canchas válidas.");
+
+            return lista;
         }
     }
+
+
 }

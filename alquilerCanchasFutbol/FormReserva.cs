@@ -110,15 +110,37 @@ namespace alquilerCanchasFutbol
         private void btnExportarXml_Click(object sender, EventArgs e)
         {
             string mensaje;
-            bool exito = this.reservaBLL.ExportarReservasAXml(out mensaje);
-            if (exito)
+            bool exito = reservaBLL.ExportarReservasAXml("reservas.xml", out mensaje);
+
+            MessageBox.Show(mensaje, exito ? "Éxito" : "Error",
+                MessageBoxButtons.OK,
+                exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show(mensaje, "Exportacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                List<Reserva> reservasImportadas = reservaBLL.ImportarReservasDesdeXml("reservas.xml");
+
+                if (reservasImportadas != null && reservasImportadas.Count > 0)
+                {
+                    MessageBox.Show($"Se cargaron {reservasImportadas.Count} reservas desde 'reservas.xml'.",
+                        "Importación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron reservas válidas en 'reservas.xml' o el archivo no existe.",
+                        "Importación Fallida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(mensaje, "Error de Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Error al intentar importar: {ex.Message}",
+                    "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
     }
 }

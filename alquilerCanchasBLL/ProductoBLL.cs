@@ -21,9 +21,7 @@ namespace alquilerCanchasBLL
         }
 
         public List<Producto> ObtenerTodos()
-        {
-            return repo.Listar();
-        }
+            => repo.Listar();
 
         public bool RegistrarVenta(int idProducto, int cantidadVendida, out string mensaje)
         {
@@ -57,7 +55,6 @@ namespace alquilerCanchasBLL
         public bool AgregarProducto(Producto p, out string mensaje)
         {
             mensaje = ValidarProducto(p);
-
             if (!string.IsNullOrEmpty(mensaje))
                 return false;
 
@@ -73,7 +70,6 @@ namespace alquilerCanchasBLL
             }
 
             mensaje = ValidarProducto(p);
-
             if (!string.IsNullOrEmpty(mensaje))
                 return false;
 
@@ -109,28 +105,22 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
-        public bool ExportarTodosAXml(out string mensaje)
+
+        public bool ExportarTodosAXml(string rutaArchivo, out string mensaje)
         {
             var productos = repo.Listar();
-            if(productos == null || productos.Count == 0)
+
+            if (productos == null || productos.Count == 0)
             {
                 mensaje = "No hay productos para exportar.";
                 return false;
             }
+
             try
             {
-                var xmlManager = new XmlManager<Producto>("producto.xml");
-                bool exito = xmlManager.Guardar(productos);
-                if(exito)
-                {
-                    mensaje = "Productos exportados a 'producto.xml' correctamente.";
-                    return true;
-                }
-                else
-                {
-                    mensaje = "Error desconocido al intentar guardar el archivo XML.";
-                    return false;
-                }
+                repo.ExportarProductosXML(productos, rutaArchivo);
+                mensaje = $"Productos exportados a '{rutaArchivo}' correctamente.";
+                return true;
             }
             catch (Exception ep)
             {
@@ -138,21 +128,18 @@ namespace alquilerCanchasBLL
                 return false;
             }
         }
-        public List<Producto> ImportarTodosDesdeXml()
+
+        public List<Producto> ImportarTodosDesdeXml(string rutaArchivo)
         {
-            try
-            {
-                var xmlManager = new XmlManager<Producto>("producto.xml");
+            var lista = repo.ImportarProductosXML(rutaArchivo);
 
-                List<Producto> productosCargados = xmlManager.Cargar();
+            if (lista == null || lista.Count == 0)
+                throw new InvalidOperationException("El archivo XML no contiene productos válidos.");
 
-                return productosCargados;
-            }
-            catch
-            {
-                return new List<Producto>();
-            }
+            return lista;
         }
+
+
 
     }
 }

@@ -1,16 +1,19 @@
 ﻿using alquilerCanchasBE;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Data;
+using System.Xml.Serialization;
 
 namespace alquilerCanchasDAL
 {
     public class ProductoDAL : IProductoRepository
     {
         private readonly ConexionDAL conexion;
+
         public ProductoDAL(ConexionDAL conexion)
         {
             this.conexion = conexion;
@@ -27,7 +30,8 @@ namespace alquilerCanchasDAL
                 Categoria = reader["Categoria"].ToString()
             };
         }
-        public List<Producto>Listar()
+
+        public List<Producto> Listar()
         {
             var lista = new List<Producto>();
             var reader = conexion.EjecutarReader("SP_ListarProducto", null);
@@ -41,63 +45,85 @@ namespace alquilerCanchasDAL
             }
             finally
             {
-                if(reader!=null && !reader.IsClosed)
-                {
+                if (reader != null && !reader.IsClosed)
                     reader.Close();
-                }
             }
+
             return lista;
         }
+
         public Producto ObtenerPorId(int idProducto)
         {
             Producto producto = null;
             var parametros = new List<SqlParameter> { new SqlParameter("@IdProducto", idProducto) };
             var reader = conexion.EjecutarReader("SP_ObtenerProductoPorId", parametros);
+
             try
             {
-                if(reader.Read())
+                if (reader.Read())
                 {
                     producto = MapearProducto(reader);
                 }
             }
             finally
             {
-                if(reader != null && !reader.IsClosed)
-                {
+                if (reader != null && !reader.IsClosed)
                     reader.Close();
-                }
             }
+
             return producto;
         }
 
-        public bool Insertar(Producto producto)
-            => conexion.EjecutarNonQueryTransacciones("SP_InsertarProductos", new List<SqlParameter>
+        public bool Insertar(Producto producto) =>
+            conexion.EjecutarNonQueryTransacciones("SP_InsertarProductos", new List<SqlParameter>
             {
-                new SqlParameter("@Nombre",producto.Nombre),
-                new SqlParameter("@Precio", producto.Precio),
-                new SqlParameter("@Stock", producto.Stock),
-                new SqlParameter("@Categoria",producto.Categoria)
+            new SqlParameter("@Nombre", producto.Nombre),
+            new SqlParameter("@Precio", producto.Precio),
+            new SqlParameter("@Stock", producto.Stock),
+            new SqlParameter("@Categoria", producto.Categoria)
             }) > 0;
 
-        public bool Actualizar(Producto producto)
-            => conexion.EjecutarNonQueryTransacciones("SP_ModificarProducto", new List<SqlParameter>
+        public bool Actualizar(Producto producto) =>
+            conexion.EjecutarNonQueryTransacciones("SP_ModificarProducto", new List<SqlParameter>
             {
-                new SqlParameter("@IdProducto", producto.IdProducto),
-                new SqlParameter("@Nombre",producto.Nombre),
-                new SqlParameter("@Precio",producto.Precio),
-                new SqlParameter("@Stock",producto.Stock),
-                new SqlParameter("@Categoria",producto.Categoria)
+            new SqlParameter("@IdProducto", producto.IdProducto),
+            new SqlParameter("@Nombre", producto.Nombre),
+            new SqlParameter("@Precio", producto.Precio),
+            new SqlParameter("@Stock", producto.Stock),
+            new SqlParameter("@Categoria", producto.Categoria)
             }) > 0;
-        public bool Eliminar(int idProducto)
-            => conexion.EjecutarNonQueryTransacciones("SP_EliminarProducto", new List<SqlParameter>
+
+        public bool Eliminar(int idProducto) =>
+            conexion.EjecutarNonQueryTransacciones("SP_EliminarProducto", new List<SqlParameter>
             {
-                new SqlParameter("@IdProducto", idProducto)
+            new SqlParameter("@IdProducto", idProducto)
             }) > 0;
-        public int ActualizarStock(int idProducto, int cantidadVendida)
-            => conexion.EjecutarNonQueryTransacciones("SP_ActualizarStock", new List<SqlParameter>
+
+        public int ActualizarStock(int idProducto, int cantidadVendida) =>
+            conexion.EjecutarNonQueryTransacciones("SP_ActualizarStock", new List<SqlParameter>
             {
-                new SqlParameter("@IdProducto",idProducto),
-                new SqlParameter("@Cantidad",cantidadVendida)
+            new SqlParameter("@IdProducto", idProducto),
+            new SqlParameter("@Cantidad", cantidadVendida)
             });
+
+        public void ExportarProductosXML(List<Producto> productos, string rutaArchivo)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Producto>));
+            using (var writer = new StreamWriter(rutaArchivo))
+            {
+                serializer.Serialize(writer, productos);
+            }
+        }
+
+        public List<Producto> ImportarProductosXML(string rutaArchivo)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Producto>));
+            using (var reader = new StreamReader(rutaArchivo))
+            {
+                return (List<Producto>)serializer.Deserialize(reader);
+            }
+        }
+
+
     }
 }

@@ -14,5 +14,10 @@ namespace alquilerCanchasDAL
         bool Actualizar(Producto producto);
         bool Eliminar(int idProducto);
         int ActualizarStock(int idProducto, int cantidadVendida);
+
+        void ExportarProductosXML(List<Producto> productos, string rutaArchivo);
+        List<Producto> ImportarProductosXML(string rutaArchivo);
+
+
     }
 }

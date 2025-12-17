@@ -121,20 +121,23 @@ namespace alquilerCanchasFutbol
         private void btnExportarXml_Click(object sender, EventArgs e)
         {
             string mensaje;
-            bool exito = this.productoBLL.ExportarTodosAXml(out mensaje);
-            if(exito)
+            bool exito = this.productoBLL.ExportarTodosAXml("productos.xml", out mensaje);
+
+            if (exito)
             {
-                MessageBox.Show(mensaje, "Exportacion Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(mensaje, "Exportación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show(mensaje, "Error de Exportacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(mensaje, "Error de Exportación", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
 
         private void btnImportarXml_Click(object sender, EventArgs e)
         {
-            var productosDesdeXml = this.productoBLL.ImportarTodosDesdeXml();
+            var productosDesdeXml = this.productoBLL.ImportarTodosDesdeXml("productos.xml");
 
             if (productosDesdeXml != null && productosDesdeXml.Count > 0)
             {

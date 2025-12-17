@@ -20,36 +20,22 @@ namespace alquilerCanchasBLL
             this.reservaRepo = reservaRepo;
         }
 
+        // Listados
         public List<Reserva> ObtenerReservas()
-        {
-            return reservaRepo.Listar();
-        }
+            => reservaRepo.Listar();
 
         public List<Reserva> ObtenerReservasPorUsuario(string nombreCliente)
-        {
-            return reservaRepo.ObtenerReservasPorUsuario(nombreCliente);
-        }
+            => reservaRepo.ObtenerReservasPorUsuario(nombreCliente);
 
+        // Reglas de disponibilidad sin SqlDataReader (DAL devuelve listas)
         public bool TurnoDisponible(int idCancha, DateTime fecha, DateTime inicio, DateTime fin)
         {
-            var lista = new List<Reserva>();
-            var reader = reservaRepo.ObtenerReservasPorCanchaYFecha(idCancha, fecha);
+            var reservas = reservaRepo.ObtenerReservasPorCanchaYFecha(idCancha, fecha)
+                                      .Where(r => r.Estado == "ACTIVA")
+                                      .ToList();
 
-            while (reader.Read())
-            {
-                var reserva = new Reserva
-                {
-                    HoraInicio = (DateTime)reader["HoraInicio"],
-                    HoraFin = (DateTime)reader["HoraFin"],
-                    Estado = reader["Estado"].ToString()
-                };
-                if (reserva.Estado == "ACTIVA")
-                    lista.Add(reserva);
-            }
-
-            reader.Close();
-
-            return !lista.Any(r => (inicio < r.HoraFin) && (fin > r.HoraInicio));
+            // Hay solapamiento si inicio < fin_reserva y fin > inicio_reserva
+            return !reservas.Any(r => (inicio < r.HoraFin) && (fin > r.HoraInicio));
         }
 
         public bool YaTieneReserva(string nombreCliente, DateTime fecha, DateTime inicio, DateTime fin)
@@ -64,6 +50,7 @@ namespace alquilerCanchasBLL
                 (inicio <= r.HoraInicio && fin > r.HoraFin));
         }
 
+        // Precio
         public decimal CalcularPrecio(int idCancha, DateTime inicio, DateTime fin)
         {
             decimal tarifaPorHora = reservaRepo.ObtenerTarifaPorCancha(idCancha);
@@ -71,10 +58,27 @@ namespace alquilerCanchasBLL
             return tarifaPorHora * (decimal)horas;
         }
 
+        // RegistrarReserva pedido explícitamente (para tu error CS1061)
+        public bool RegistrarReserva(Reserva nueva)
+        {
+            var msg = ValidarReserva(nueva);
+            if (!string.IsNullOrEmpty(msg)) return false;
+
+            // Reglas de solapamiento
+            if (!TurnoDisponible(nueva.IdCancha, nueva.Fecha, nueva.HoraInicio, nueva.HoraFin))
+                return false;
+
+            if (YaTieneReserva(nueva.Cliente, nueva.Fecha, nueva.HoraInicio, nueva.HoraFin))
+                return false;
+
+            nueva.Estado = "ACTIVA";
+            return reservaRepo.Insertar(nueva);
+        }
+
+        // Variante con mensaje (útil en UI)
         public bool ReservarCancha(Reserva r, out string mensaje)
         {
             mensaje = ValidarReserva(r);
-
             if (!string.IsNullOrEmpty(mensaje))
                 return false;
 
@@ -96,16 +100,9 @@ namespace alquilerCanchasBLL
             return ok;
         }
 
-        public bool RegistrarReserva(Reserva nueva)
-        {
-            nueva.Estado = "ACTIVA";
-            return reservaRepo.Insertar(nueva);
-        }
-
+        // Cancelaciones
         public bool CancelarReserva(int idReserva)
-        {
-            return reservaRepo.CancelarReserva(idReserva) > 0;
-        }
+            => reservaRepo.CancelarReserva(idReserva) > 0;
 
         public bool CancelarReserva(int idReserva, out string mensaje)
         {
@@ -134,6 +131,7 @@ namespace alquilerCanchasBLL
             return ok;
         }
 
+        // Validación
         private string ValidarReserva(Reserva r)
         {
             if (r == null)
@@ -153,40 +151,47 @@ namespace alquilerCanchasBLL
 
             return string.Empty;
         }
-
-        public bool ExportarReservasAXml(out string mensaje)
+        public List<Reserva> ObtenerReservasParaExportar()
         {
-            var reservas = reservaRepo.Listar();
-            if(reservas == null || reservas.Count == 0)
+            return reservaRepo.ObtenerReservasParaExportar();
+        }
+
+
+
+        // XML delegados a DAL
+        public bool ExportarReservasAXml(string rutaArchivo, out string mensaje)
+        {
+            var reservas = reservaRepo.ObtenerReservasParaExportar();
+
+            if (reservas == null || reservas.Count == 0)
             {
-                mensaje = "No hay reservas para exportar";
+                mensaje = "No hay reservas para exportar.";
                 return false;
             }
+
             try
             {
-                var xmlManager = new XmlManager<Reserva>("reservas.xml");
-                bool exito = xmlManager.Guardar(reservas);
-                if(exito)
-                {
-                    mensaje = "Reservas exportadas a 'reservas.xml' correctamente.";
-                    return true;
-                }
-                else
-                {
-                    mensaje = "Error desconocido al intentar guardar el archivo XML de reservas.";
-                    return false;
-                }
+                reservaRepo.ExportarReservasXML(reservas, rutaArchivo);
+                mensaje = $"Reservas exportadas a '{rutaArchivo}' correctamente.";
+                return true;
             }
-            catch(Exception ep)
+            catch (Exception ep)
             {
                 mensaje = $"Error de sistema al exportar las reservas: {ep.Message}";
                 return false;
             }
         }
-        public List<Reserva> ImportarReservasDesdeXml()
+
+        public List<Reserva> ImportarReservasDesdeXml(string rutaArchivo)
         {
-            var xmlManager = new XmlManager<Reserva>("reservas.xml");
-            return xmlManager.Cargar();
+            var lista = reservaRepo.ImportarReservasXML(rutaArchivo);
+
+            if (lista == null || lista.Count == 0)
+                throw new InvalidOperationException("El archivo XML no contiene reservas válidas.");
+
+            return lista;
         }
+
+
     }
 }

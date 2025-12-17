@@ -25,5 +25,3 @@ D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasFutbol\obj\Debug\alquilerCanc
 D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasFutbol\obj\Debug\alquilerCanchasFutbol.pdb
 D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasFutbol\obj\Debug\alquilerCanchasFutbol.exe.config
 D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasFutbol\obj\Debug\alquilerCanchasFutbol.Form1.resources
-D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasFutbol\bin\Debug\Utils.dll
-D:\ejercicios\alquilerCanchasFutbol\alquilerCanchasFutbol\bin\Debug\Utils.pdb

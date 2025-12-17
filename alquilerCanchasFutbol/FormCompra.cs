@@ -232,8 +232,7 @@ namespace alquilerCanchasFutbol
         private void btnExportarXml_Click(object sender, EventArgs e)
         {
             string mensaje;
-
-            bool exito = this.ventaBll.ExportarVentasAXml(out mensaje);
+            bool exito = this.compraBLL.ExportarComprasAXml("compras.xml", out mensaje);
 
             if (exito)
             {
@@ -243,37 +242,30 @@ namespace alquilerCanchasFutbol
             {
                 MessageBox.Show(mensaje, "Error de Exportación", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnImportarXml_Click(object sender, EventArgs e)
         {
-            try
+            var comprasDesdeXml = this.compraBLL.ImportarComprasDesdeXml("compras.xml");
+
+            if (comprasDesdeXml != null && comprasDesdeXml.Count > 0)
             {
-                var ventasDesdeXml = this.ventaBll.ImportarVentasDesdeXml();
-
-                if (ventasDesdeXml != null && ventasDesdeXml.Count > 0)
-                {
-                    MessageBox.Show(
-                        $"Se han cargado {ventasDesdeXml.Count} registros de VENTAS desde 'ventas.xml' para verificación. (No se modifica la compra actual)",
-                        "Importación Exitosa de Ventas",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-
-                }
-                else
-                {
-                    MessageBox.Show(
-                       "El archivo 'ventas.xml' no existe, está vacío o corrupto. No se pudo importar.",
-                       "Error/Advertencia de Importación",
-                       MessageBoxButtons.OK,
-                       MessageBoxIcon.Warning
-                   );
-                }
+                MessageBox.Show(
+                    $"Se han cargado {comprasDesdeXml.Count} registros de COMPRAS desde 'compras.xml' para verificación.",
+                    "Importación Exitosa de Compras",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error crítico al importar XML: {ex.Message}", "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                   "El archivo 'compras.xml' no existe, está vacío o corrupto. No se pudo importar.",
+                   "Error/Advertencia de Importación",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning
+               );
             }
         }
     }
